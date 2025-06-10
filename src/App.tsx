@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import styles from './index.module.css'
-import styles1 from './style.module.scss'
+// import styles from './index.module.css'
+// import styles1 from './style.module.scss'
 import Countdown from './components/CountDown';
 import {parseFutureTimeToTimestamp} from './utils/utils'
-import './style.css'
-console.log('styles.center',styles)
+// import './style.css'
+// console.log('styles.center',styles)
 const App: React.FC = () => {
 
 
@@ -48,10 +48,14 @@ const App: React.FC = () => {
     console.log('5')
   }
   return <div className='app'>988Hello, React!
-  <div className={styles.name}>
+  <div 
+  // className={styles.name}
+  >
       center
   </div>
-  <div className={styles1.center} onClick={()=>{
+  <div 
+  // className={styles1.center}
+   onClick={()=>{
     testpPromise()
   }}>
       center1
