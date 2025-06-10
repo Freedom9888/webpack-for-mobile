@@ -30,7 +30,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].js',
     clean: true,
   },
   devServer: {
@@ -53,7 +53,8 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
-  devtool: isDev ? 'eval-source-map' : false, // 开发用 source-map，生产关闭
+  // devtool: isDev ? 'eval-source-map' : false, 
+  // 开发用 source-map，生产关闭
   module: {
     rules: [
       {
@@ -72,7 +73,7 @@ module.exports = {
                   runtime: 'automatic',
                 },
               },
-              ...(isDev ? {} : {
+              ...(!isDev ? {} : {
                 minify: {
                   compress: {
                     drop_console: !isDev,
@@ -122,7 +123,7 @@ module.exports = {
     // 启用 Gzip 压缩
     new CompressionPlugin({
       test: /\.(js|css|html)$/i, // 只对 .js, .css, .html 文件进行压缩
-      threshold: 10,  // 文件大于 10KB 时启用压缩
+      threshold: 1024,  // 文件大于 10KB 时启用压缩
       minRatio: 0.8,     // 压缩比率小于 0.8 时进行压缩
       deleteOriginalAssets: false, // 保留原始文件，不删除
     }),
@@ -132,6 +133,34 @@ module.exports = {
     'react-dom': 'ReactDOM'
   },
   optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 0,         // 模块最小尺寸（可选：调小可以拆得更细）
+      minChunks: 2,       // 至少被两个 chunk 引用就提取
+      cacheGroups: {
+        default: {
+          name: 'common-lib',
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+        common: {
+          test: /[\\/]src[\\/](utils|common|shared)[\\/]/, // 匹配你的公共文件目录
+          name: 'common',
+          chunks: 'all',
+          minChunks: 2,
+          priority: -5,
+          enforce: true, // 强制拆包，确保生成 common.js
+          reuseExistingChunk: true,
+        },
+        // externals  稍微大点的三方包直接走cdn
+        // vendors: {
+        //   test: /[\\/]node_modules[\\/]/,
+        //   name: 'vendors',
+        //   priority: -10,
+        //   chunks: 'all',
+        // },
+      },
+    },
     minimize: true,
     minimizer: [
       //   new TerserPlugin({
@@ -147,6 +176,6 @@ module.exports = {
       // }),
       new CssMinimizerPlugin(), // 启用 CSS 压缩插件
     ],
-    sideEffects: false //tree shaking
+    sideEffects: false,//tree shaking
   },
 };

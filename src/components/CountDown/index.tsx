@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+// import { test }from '../../utils/utils'
+import debounce from 'lodash/debounce';
 import styles from './index.module.scss'
 
 interface CountdownProps {
@@ -8,7 +10,10 @@ interface CountdownProps {
 const Countdown: React.FC<CountdownProps> = ({ endTime }) => {
   const [timeLeft, setTimeLeft] = useState<number>(endTime - Date.now());
   const [hasEnded, setHasEnded] = useState<boolean>(false);
-
+const debounced = debounce(() => {
+    console.log('888')
+    // test()
+  }, 500)
   useEffect(() => {
     if (timeLeft <= 0) {
       setHasEnded(true);
@@ -44,6 +49,7 @@ const Countdown: React.FC<CountdownProps> = ({ endTime }) => {
         <div 
         className={styles.countdown}
         >
+            <div onClick={debounced}>debounced</div>
             {formatTime(timeLeft)}</div>
       )}
     </div>
