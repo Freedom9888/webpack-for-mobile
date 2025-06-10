@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import styles from './index.module.scss'
+import styles from './index.module.scss'
 
 interface CountdownProps {
   endTime: number; // 未来的某个时间戳
@@ -42,7 +42,7 @@ const Countdown: React.FC<CountdownProps> = ({ endTime }) => {
         <button onClick={() => alert('Button clicked!')}>Click Me!</button>
       ) : (
         <div 
-        // className={styles.countdown}
+        className={styles.countdown}
         >
             {formatTime(timeLeft)}</div>
       )}
