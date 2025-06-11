@@ -49,11 +49,22 @@ module.exports = {
 
       return middlewares;
     },
+    // 在这里添加代理配置
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000', // 代理目标地址
+        changeOrigin: true, // 对请求头中的 `Host` 进行修改
+        secure: false, // 如果是 https 需要设置为 true
+        pathRewrite: {
+          '^/api': '', // 将 /api 重写为空（可选）
+        },
+      },
+    },
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
-  // devtool: isDev ? 'eval-source-map' : false, 
+  devtool: isDev ? 'eval-source-map' : false, 
   // 开发用 source-map，生产关闭
   module: {
     rules: [

@@ -1,8 +1,8 @@
-import React, { useEffect,Suspense,useState } from 'react';
+import React, { useEffect, Suspense, useState } from 'react'
 import styles from './index.module.css'
 import styles1 from './style.module.scss'
-import Countdown from './components/CountDown';
-import debounce from 'lodash/debounce';
+import Countdown from './components/CountDown'
+import debounce from 'lodash/debounce'
 // import { test }from './utils/utils'
 // import { parseFutureTimeToTimestamp } from './utils/utils'
 import './style.css'
@@ -14,21 +14,21 @@ console.log('styles.center', styles)
  * @returns 时间戳（毫秒）
  */
 export function parseFutureTimeToTimestamp(timeStr: string): number {
-  const formatted = timeStr.replace(/-/g, '/'); // Safari 兼容性处理
-  const timestamp = new Date(formatted).getTime();
+  const formatted = timeStr.replace(/-/g, '/') // Safari 兼容性处理
+  const timestamp = new Date(formatted).getTime()
   if (isNaN(timestamp)) {
-    throw new Error(`Invalid time string format: ${timeStr}`);
+    throw new Error(`Invalid time string format: ${timeStr}`)
   }
   if (timestamp <= Date.now()) {
-    throw new Error(`Time must be in the future: ${timeStr}`);
+    throw new Error(`Time must be in the future: ${timeStr}`)
   }
-  return timestamp;
+  return timestamp
 }
-const Home = React.lazy(() => import('./pages/Home'));
-const About = React.lazy(() => import('./pages/About'));
+const Home = React.lazy(() => import('./pages/Home'))
+const About = React.lazy(() => import('./pages/About'))
 const App: React.FC = () => {
-const [page, setPage] = useState<'home' | 'about'>('home');
-  const debounced = debounce(() => {
+  const [page, setPage] = useState<'home' | 'about'>('home')
+  const debounced: any = debounce((e: React.MouseEvent<HTMLDivElement>) => {
     console.log('666')
     // test()
   }, 500)
@@ -40,12 +40,12 @@ const [page, setPage] = useState<'home' | 'about'>('home');
       p = resolve
     }).then(() => {
       console.log('2')
-    });
+    })
     new Promise((resolve, reject) => {
       resolve('')
     }).then(() => {
       console.log('3')
-    });
+    })
     setTimeout(() => {
       console.log('4')
     }, 0)
@@ -59,49 +59,48 @@ const [page, setPage] = useState<'home' | 'about'>('home');
       p = resolve
     }).then(() => {
       console.log('2')
-    });
+    })
     new Promise((resolve, reject) => {
       resolve('')
     }).then(() => {
       console.log('3')
-    });
+    })
     setTimeout(() => {
       console.log('4')
     }, 0)
     p(8)
     console.log('5')
   }
-  return <div className='app'>
-    988Hello, React!
-    <div
-      onClick={debounced}
-      className={styles.name}
-    >
-      center
-    </div>
-    <div
-      className={styles1.center}
-      onClick={() => {
-        testpPromise()
-      }}>
-      center1
-    </div>
-    <div>
-      <Countdown endTime={parseFutureTimeToTimestamp('2025-06-11 13:00:00')} />
-    </div>
-    <div>
-      <h1>My App</h1>
-      <div>
-        <button onClick={() => setPage('home')}>Home</button>
-        <button onClick={() => setPage('about')}>About</button>
+  return (
+    <div className="app">
+      988Hello, React!
+      <div onClick={debounced} className={styles.name}>
+        center
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        {page === 'home' && <Home />}
-        {page === 'about' && <About />}
-      </Suspense>
+      <div
+        className={styles1.center}
+        onClick={() => {
+          testpPromise()
+        }}
+      >
+        center1
+      </div>
+      <div>
+        <Countdown endTime={parseFutureTimeToTimestamp('2025-06-12 13:00:00')} />
+      </div>
+      <div>
+        <h1>My App</h1>
+        <div>
+          <button onClick={() => setPage('home')}>Home</button>
+          <button onClick={() => setPage('about')}>About</button>
+        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+          {page === 'home' && <Home />}
+          {page === 'about' && <About />}
+        </Suspense>
+      </div>
     </div>
-  </div>;
+  )
+}
 
-};
-
-export default App;
+export default App
