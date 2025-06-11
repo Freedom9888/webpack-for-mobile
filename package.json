@@ -7,7 +7,8 @@
     "dev": "cross-env NODE_ENV=development webpack serve",
     "build": "cross-env NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "builddev": "webpack"
+    "builddev": "webpack",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
@@ -16,15 +17,25 @@
     "@swc/core": "^1.11.31",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.34.0",
+    "@typescript-eslint/parser": "^8.34.0",
     "compression-webpack-plugin": "^11.1.0",
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.0",
     "css-minimizer-webpack-plugin": "^7.0.2",
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "html-webpack-plugin": "^5.6.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
     "mini-css-extract-plugin": "^2.9.2",
     "postcss": "^8.5.4",
     "postcss-loader": "^8.1.1",
     "postcss-px-to-viewport": "^1.1.1",
+    "prettier": "^3.5.3",
     "sass": "^1.89.1",
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
@@ -39,5 +50,11 @@
     "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
