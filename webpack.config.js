@@ -50,7 +50,7 @@ module.exports = {
       return middlewares;
     },
     // 在这里添加代理配置
-    proxy: {
+    proxy: [{
       '/api': {
         target: 'http://localhost:3000', // 代理目标地址
         changeOrigin: true, // 对请求头中的 `Host` 进行修改
@@ -59,7 +59,7 @@ module.exports = {
           '^/api': '', // 将 /api 重写为空（可选）
         },
       },
-    },
+    }],
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
