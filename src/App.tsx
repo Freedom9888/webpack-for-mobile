@@ -28,7 +28,7 @@ const Home = React.lazy(() => import('./pages/Home'))
 const About = React.lazy(() => import('./pages/About'))
 const Invest = React.lazy(() => import('./pages/Invest')) // 新增
 const App: React.FC = () => {
-  const [page, setPage] = useState<'home' | 'about'|'Invest'>('home')
+  const [page, setPage] = useState<'home' | 'about'|'invest'>('home')
   const debounced: any = debounce((e: React.MouseEvent<HTMLDivElement>) => {
     console.log('666')
     // test()
@@ -94,12 +94,12 @@ const App: React.FC = () => {
         <div>
           <button onClick={() => setPage('home')}>Home</button>
           <button onClick={() => setPage('about')}>About</button>
-          <button onClick={() => setPage('Invest')}>Invest</button>
+          <button onClick={() => setPage('invest')}>Invest</button>
         </div>
         <Suspense fallback={<div>Loading...</div>}>
           {page === 'home' && <Home />}
           {page === 'about' && <About />}
-          {page === 'Invest' && <Invest />}
+          {page === 'invest' && <Invest />}
         </Suspense>
       </div>
     </div>
