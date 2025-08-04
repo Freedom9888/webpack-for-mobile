@@ -27,8 +27,9 @@ export function parseFutureTimeToTimestamp(timeStr: string): number {
 const Home = React.lazy(() => import('./pages/Home'))
 const About = React.lazy(() => import('./pages/About'))
 const Invest = React.lazy(() => import('./pages/Invest')) // 新增
+const Editor = React.lazy(() => import('./pages/Editor')) // 新增
 const App: React.FC = () => {
-  const [page, setPage] = useState<'home' | 'about'|'invest'>('home')
+  const [page, setPage] = useState<'home' | 'about'|'invest'|'editor'>('home')
   const debounced: any = debounce((e: React.MouseEvent<HTMLDivElement>) => {
     console.log('666')
     // test()
@@ -87,7 +88,7 @@ const App: React.FC = () => {
         center1
       </div>
       <div>
-        <Countdown endTime={parseFutureTimeToTimestamp('2025-07-15 13:00:00')} />
+        <Countdown endTime={parseFutureTimeToTimestamp('2025-08-30 13:00:00')} />
       </div>
       <div>
         <h1>My App</h1>
@@ -95,11 +96,13 @@ const App: React.FC = () => {
           <button onClick={() => setPage('home')}>Home</button>
           <button onClick={() => setPage('about')}>About</button>
           <button onClick={() => setPage('invest')}>Invest</button>
+          <button onClick={() => setPage('editor')}>Invest</button>
         </div>
         <Suspense fallback={<div>Loading...</div>}>
           {page === 'home' && <Home />}
           {page === 'about' && <About />}
           {page === 'invest' && <Invest />}
+          {page === 'editor' && <Editor />}
         </Suspense>
       </div>
     </div>
