@@ -28,8 +28,9 @@ const Home = React.lazy(() => import('./pages/Home'))
 const About = React.lazy(() => import('./pages/About'))
 const Invest = React.lazy(() => import('./pages/Invest')) // 新增
 const Editor = React.lazy(() => import('./pages/Editor')) // 新增
+const Demo1 = React.lazy(() => import('./pages/demo1')) // 新增
 const App: React.FC = () => {
-  const [page, setPage] = useState<'home' | 'about'|'invest'|'editor'>('home')
+  const [page, setPage] = useState<'home' | 'about' | 'invest' | 'editor' | 'demo1'>('home')
   const debounced: any = debounce((e: React.MouseEvent<HTMLDivElement>) => {
     console.log('666')
     // test()
@@ -96,13 +97,15 @@ const App: React.FC = () => {
           <button onClick={() => setPage('home')}>Home</button>
           <button onClick={() => setPage('about')}>About</button>
           <button onClick={() => setPage('invest')}>Invest</button>
-          <button onClick={() => setPage('editor')}>Invest</button>
+          <button onClick={() => setPage('editor')}>Editor</button>
+          <button onClick={() => setPage('demo1')}>Demo1</button>
         </div>
         <Suspense fallback={<div>Loading...</div>}>
           {page === 'home' && <Home />}
           {page === 'about' && <About />}
           {page === 'invest' && <Invest />}
           {page === 'editor' && <Editor />}
+          {page === 'demo1' && <Demo1 />}
         </Suspense>
       </div>
     </div>

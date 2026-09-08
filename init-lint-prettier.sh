@@ -1,5 +1,5 @@
 #!/bin/zsh
-
+sudo chown -R $(whoami) /usr/local/lib/node_modules
 echo "📦 安装 ESLint + Prettier + TypeScript 插件..."
 
 npm install --save-dev \

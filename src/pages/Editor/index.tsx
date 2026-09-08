@@ -16,10 +16,11 @@ const EditorBanner: React.FC = () => {
           color: '#fff',
           fontSize: '4rem',
           fontWeight: 'bold',
-          textShadow: '0 0 20px red, 0 0 40px red'
+          textShadow: '0 0 20px red, 0 0 40px red',
+          textAlign: 'center'
         }}
       >
-       发布订阅者模式 和 观察者模式的区别
+        一篇文章彻底搞懂发布订阅者模式 和观察者模式区别
       </span>
     </div>
   )
