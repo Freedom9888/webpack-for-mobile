@@ -1,39 +1,39 @@
-# Node.js
+# Dependencies
 node_modules/
 
-# 运行时文件
-npm-debug.log
-yarn-debug.log
-yarn-error.log
-
-# 构建文件
+# Build output
 /dist/
 /build/
 
-# 操作系统生成的文件
-.DS_Store        # macOS
-Thumbs.db        # Windows
-.DS_Store
-
-# 环境配置文件
+# Environment files
 .env
-.env.*
-!.env.example
+.env.local
+.env.*.local
 
-# IDE 配置文件
-.vscode/
+# IDE
 .idea/
-
-# 临时文件
-*.log
 *.swp
 *.swo
+*~
 
-# 测试目录
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
 /coverage/
 
-# 可选的其他配置
-*.tgz
-
-# 构建分析报告
+# Bundle analysis
 report.html
+stats.json
+
+# Temporary files
+*.tgz
+*.tmp

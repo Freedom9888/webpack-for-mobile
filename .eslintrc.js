@@ -12,6 +12,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended'
   ],
@@ -23,7 +24,18 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }]
+    'react/prop-types': 'off',
+    'react/display-name': 'off',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-empty-function': 'warn',
+    'no-console': ['warn', { allow: ['warn', 'error'] }]
   },
-  ignorePatterns: ['dist/', 'build/', 'node_modules/'],
+  ignorePatterns: ['dist/', 'build/', 'node_modules/', '*.config.js'],
+  env: {
+    browser: true,
+    node: true,
+    es2020: true
+  }
 }
