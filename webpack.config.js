@@ -8,6 +8,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
+const { InjectManifest } = require('workbox-webpack-plugin')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const envFile = isDevelopment ? '.env.development' : '.env.production'
@@ -240,6 +241,15 @@ module.exports = {
         }
       ]
     }),
+    ...(!isDevelopment
+      ? [
+          new InjectManifest({
+            swSrc: './src/service-worker.ts',
+            swDest: 'service-worker.js',
+            maximumFileSizeToCacheInBytes: 5 * 1024 * 1024
+          })
+        ]
+      : []),
     ...(shouldAnalyze
       ? [new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })]
       : [])

@@ -1,0 +1,48 @@
+import { precacheAndRoute } from 'workbox-precaching'
+import { registerRoute } from 'workbox-routing'
+import { StaleWhileRevalidate, CacheFirst, NetworkFirst } from 'workbox-strategies'
+import { ExpirationPlugin } from 'workbox-expiration'
+
+declare const self: ServiceWorkerGlobalScope
+
+precacheAndRoute(self.__WB_MANIFEST)
+
+registerRoute(
+  ({ request }) => request.mode === 'navigate',
+  new NetworkFirst({
+    cacheName: 'pages'
+  })
+)
+
+registerRoute(
+  ({ url }) => url.pathname.endsWith('.css') || url.pathname.endsWith('.js'),
+  new StaleWhileRevalidate({
+    cacheName: 'static-resources'
+  })
+)
+
+registerRoute(
+  ({ url }) => /\.(png|jpg|jpeg|svg|gif|webp)$/.test(url.pathname),
+  new CacheFirst({
+    cacheName: 'images',
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 60,
+        maxAgeSeconds: 30 * 24 * 60 * 60
+      })
+    ]
+  })
+)
+
+registerRoute(
+  ({ url }) => /\.(woff2?|eot|ttf|otf)$/.test(url.pathname),
+  new CacheFirst({
+    cacheName: 'fonts',
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 30,
+        maxAgeSeconds: 365 * 24 * 60 * 60
+      })
+    ]
+  })
+)

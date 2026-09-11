@@ -34,7 +34,12 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^17.0.13",
-    "react-router-dom": "^7.18.3"
+    "react-router-dom": "^7.18.3",
+    "workbox-expiration": "^7.4.1",
+    "workbox-precaching": "^7.4.1",
+    "workbox-routing": "^7.4.1",
+    "workbox-strategies": "^7.4.1",
+    "workbox-webpack-plugin": "^7.4.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.2",
