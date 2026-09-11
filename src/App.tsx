@@ -8,10 +8,8 @@ import Countdown from './components/CountDown'
 import debounce from 'lodash/debounce'
 import './style.css'
 
-console.log('styles.center', styles)
-
 function parseFutureTimeToTimestamp(timeStr: string): number {
-  const formatted = timeStr.replace(/-/g, '/') // Safari 兼容性处理
+  const formatted = timeStr.replace(/-/g, '/') // Safari compatibility
   const timestamp = new Date(formatted).getTime()
   if (isNaN(timestamp)) {
     throw new Error(`Invalid time string format: ${timeStr}`)
@@ -21,76 +19,37 @@ function parseFutureTimeToTimestamp(timeStr: string): number {
 
 const App: React.FC = () => {
   const { t } = useTranslation()
-  const debounced = debounce(() => {
-    console.log('666')
+  const debouncedEventHandler = debounce(() => {
+    // Handle debounced event
   }, 500)
 
   useEffect(() => {
-    let p: (value: number) => void
-    new Promise<number>(resolve => {
-      console.log('1')
-      p = resolve
-    }).then(() => {
-      console.log('2')
-    })
-    new Promise(resolve => {
-      resolve('')
-    }).then(() => {
-      console.log('3')
-    })
-    setTimeout(() => {
-      console.log('4')
-    }, 0)
-    p!(8)
-    console.log('5')
+    // Initialize app on mount
   }, [])
-
-  const testpPromise = () => {
-    let p: (value: number) => void
-    new Promise<number>(resolve => {
-      console.log('1')
-      p = resolve
-    }).then(() => {
-      console.log('2')
-    })
-    new Promise(resolve => {
-      resolve('')
-    }).then(() => {
-      console.log('3')
-    })
-    setTimeout(() => {
-      console.log('4')
-    }, 0)
-    p!(8)
-    console.log('5')
-  }
 
   return (
     <div className="app">
       <SkipLink />
       <header role="banner">
-        988Hello, React!
-        <div onClick={debounced} className={styles.name}>
-          center
+        <div>Hello, React!</div>
+        <div onClick={debouncedEventHandler} className={styles.name}>
+          {t('home.title', 'Center')}
         </div>
-        <div
-          className={styles1.center}
-          onClick={() => {
-            testpPromise()
-          }}
-        >
-          center1
+        <div className={styles1.center}>
+          {t('home.subtitle', 'Center 1')}
         </div>
         <div>
           <Countdown endTime={parseFutureTimeToTimestamp('2025-08-30 13:00:00')} />
         </div>
       </header>
       <main id="main-content" role="main" tabIndex={-1}>
-        <h1>My App</h1>
+        <h1>{t('home.appTitle', 'My App')}</h1>
         <nav role="navigation" aria-label="Main navigation">
-          <Link to="/">{t('nav.home')}</Link> | <Link to="/about">{t('nav.about')}</Link> |{' '}
-          <Link to="/invest">{t('nav.invest')}</Link> | <Link to="/editor">{t('nav.editor')}</Link>{' '}
-          | <Link to="/demo1">{t('nav.demo1')}</Link>
+          <Link to="/">{t('nav.home', 'Home')}</Link> |{' '}
+          <Link to="/about">{t('nav.about', 'About')}</Link> |{' '}
+          <Link to="/invest">{t('nav.invest', 'Invest')}</Link> |{' '}
+          <Link to="/editor">{t('nav.editor', 'Editor')}</Link> |{' '}
+          <Link to="/demo1">{t('nav.demo1', 'Demo 1')}</Link>
         </nav>
         <Outlet />
       </main>
