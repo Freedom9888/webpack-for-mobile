@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import SkipLink from './components/SkipLink'
 import styles from './index.module.css'
 import styles1 from './style.module.scss'
 import Countdown from './components/CountDown'
@@ -66,30 +67,33 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
-      988Hello, React!
-      <div onClick={debounced} className={styles.name}>
-        center
-      </div>
-      <div
-        className={styles1.center}
-        onClick={() => {
-          testpPromise()
-        }}
-      >
-        center1
-      </div>
-      <div>
-        <Countdown endTime={parseFutureTimeToTimestamp('2025-08-30 13:00:00')} />
-      </div>
-      <div>
+      <SkipLink />
+      <header role="banner">
+        988Hello, React!
+        <div onClick={debounced} className={styles.name}>
+          center
+        </div>
+        <div
+          className={styles1.center}
+          onClick={() => {
+            testpPromise()
+          }}
+        >
+          center1
+        </div>
+        <div>
+          <Countdown endTime={parseFutureTimeToTimestamp('2025-08-30 13:00:00')} />
+        </div>
+      </header>
+      <main id="main-content" role="main" tabIndex={-1}>
         <h1>My App</h1>
-        <nav>
+        <nav role="navigation" aria-label="Main navigation">
           <Link to="/">{t('nav.home')}</Link> | <Link to="/about">{t('nav.about')}</Link> |{' '}
           <Link to="/invest">{t('nav.invest')}</Link> | <Link to="/editor">{t('nav.editor')}</Link>{' '}
           | <Link to="/demo1">{t('nav.demo1')}</Link>
         </nav>
         <Outlet />
-      </div>
+      </main>
     </div>
   )
 }
