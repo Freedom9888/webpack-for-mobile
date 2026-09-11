@@ -50,7 +50,7 @@ module.exports = {
     chunkFilename: isDevelopment ? '[name].chunk.js' : '[name].[contenthash:8].chunk.js',
     assetModuleFilename: 'assets/[name].[hash:8][ext]',
     clean: true,
-    publicPath: '/'
+    publicPath: 'auto'
   },
   devServer: {
     static: path.join(__dirname, 'dist'),
@@ -199,6 +199,16 @@ module.exports = {
       __APP_VERSION__: JSON.stringify(appVersion),
       __BUILD_TIME__: JSON.stringify(buildTime),
       __DEV__: JSON.stringify(isDevelopment)
+    }),
+    new webpack.container.ModuleFederationPlugin({
+      name: 'mobileApp',
+      filename: 'remoteEntry.js',
+      exposes: {},
+      shared: {
+        react: { singleton: true, requiredVersion: '^19.0.0' },
+        'react-dom': { singleton: true, requiredVersion: '^19.0.0' },
+        'react-router-dom': { singleton: true, requiredVersion: '^7.0.0' }
+      }
     }),
     new Dotenv({
       path: isDevelopment ? '.env.development' : '.env.production',
