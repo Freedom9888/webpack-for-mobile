@@ -7,8 +7,12 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
+const envFile = isDevelopment ? '.env.development' : '.env.production'
+require('dotenv').config({ path: envFile })
+require('dotenv').config({ path: '.env' })
 const shouldAnalyze = process.env.ANALYZE === 'true'
 const apiProxyTarget = process.env.API_PROXY_TARGET
 
@@ -194,6 +198,11 @@ module.exports = {
       __APP_VERSION__: JSON.stringify(appVersion),
       __BUILD_TIME__: JSON.stringify(buildTime),
       __DEV__: JSON.stringify(isDevelopment)
+    }),
+    new Dotenv({
+      path: isDevelopment ? '.env.development' : '.env.production',
+      defaults: true,
+      safe: true
     }),
     new CompressionPlugin({
       test: /\.(js|css|html|svg)$/i,
