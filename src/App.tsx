@@ -13,14 +13,11 @@ console.log('styles.center', styles)
  * @param timeStr 格式化的时间字符串，例如 "2025-06-10 12:30:00"
  * @returns 时间戳（毫秒）
  */
-export function parseFutureTimeToTimestamp(timeStr: string): number {
+function parseFutureTimeToTimestamp(timeStr: string): number {
   const formatted = timeStr.replace(/-/g, '/') // Safari 兼容性处理
   const timestamp = new Date(formatted).getTime()
   if (isNaN(timestamp)) {
     throw new Error(`Invalid time string format: ${timeStr}`)
-  }
-  if (timestamp <= Date.now()) {
-    throw new Error(`Time must be in the future: ${timeStr}`)
   }
   return timestamp
 }
@@ -31,20 +28,20 @@ const Editor = React.lazy(() => import('./pages/Editor')) // 新增
 const Demo1 = React.lazy(() => import('./pages/demo1')) // 新增
 const App: React.FC = () => {
   const [page, setPage] = useState<'home' | 'about' | 'invest' | 'editor' | 'demo1'>('home')
-  const debounced: any = debounce((e: React.MouseEvent<HTMLDivElement>) => {
+  const debounced = debounce(() => {
     console.log('666')
     // test()
   }, 500)
 
   useEffect(() => {
     let p
-    new Promise((resolve, reject) => {
+    new Promise(resolve => {
       console.log('1')
       p = resolve
     }).then(() => {
       console.log('2')
     })
-    new Promise((resolve, reject) => {
+    new Promise(resolve => {
       resolve('')
     }).then(() => {
       console.log('3')
@@ -57,13 +54,13 @@ const App: React.FC = () => {
   }, [])
   const testpPromise = () => {
     let p
-    new Promise((resolve, reject) => {
+    new Promise(resolve => {
       console.log('1')
       p = resolve
     }).then(() => {
       console.log('2')
     })
-    new Promise((resolve, reject) => {
+    new Promise(resolve => {
       resolve('')
     }).then(() => {
       console.log('3')

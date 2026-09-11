@@ -61,8 +61,13 @@ module.exports = {
         ]
       : []
   },
+
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM'
   },
   devtool: isDevelopment ? 'eval-cheap-module-source-map' : 'source-map',
   module: {
@@ -111,7 +116,9 @@ module.exports = {
       minRatio: 0.8,
       deleteOriginalAssets: false
     }),
-    ...(shouldAnalyze ? [new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })] : [])
+    ...(shouldAnalyze
+      ? [new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })]
+      : [])
   ],
   optimization: {
     runtimeChunk: 'single',
