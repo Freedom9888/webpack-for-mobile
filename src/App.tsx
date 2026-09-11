@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Outlet, Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import styles from './index.module.css'
 import styles1 from './style.module.scss'
 import Countdown from './components/CountDown'
@@ -18,6 +19,7 @@ function parseFutureTimeToTimestamp(timeStr: string): number {
 }
 
 const App: React.FC = () => {
+  const { t } = useTranslation()
   const debounced = debounce(() => {
     console.log('666')
   }, 500)
@@ -82,9 +84,9 @@ const App: React.FC = () => {
       <div>
         <h1>My App</h1>
         <nav>
-          <Link to="/">Home</Link> | <Link to="/about">About</Link> |{' '}
-          <Link to="/invest">Invest</Link> | <Link to="/editor">Editor</Link> |{' '}
-          <Link to="/demo1">Demo1</Link>
+          <Link to="/">{t('nav.home')}</Link> | <Link to="/about">{t('nav.about')}</Link> |{' '}
+          <Link to="/invest">{t('nav.invest')}</Link> | <Link to="/editor">{t('nav.editor')}</Link>{' '}
+          | <Link to="/demo1">{t('nav.demo1')}</Link>
         </nav>
         <Outlet />
       </div>

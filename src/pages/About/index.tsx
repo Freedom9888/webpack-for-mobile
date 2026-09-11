@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { test } from '../../utils/utils'
 
 const About: React.FC = () => {
+  const { t } = useTranslation()
   useEffect(() => {
     test()
   }, [])
   return (
     <div>
-      <h2>About Page</h2>
-      <p>This is the About page content.</p>
+      <h2>{t('about.title')}</h2>
+      <p>{t('about.description')}</p>
     </div>
   )
 }

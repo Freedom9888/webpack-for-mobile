@@ -1,0 +1,26 @@
+{
+  "app": {
+    "title": "企业移动端",
+    "hello": "你好，React！"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于",
+    "invest": "投资",
+    "editor": "编辑器",
+    "demo1": "示例1"
+  },
+  "home": {
+    "title": "首页",
+    "description": "这是首页内容。"
+  },
+  "about": {
+    "title": "关于页面",
+    "description": "这是关于页面内容。"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "出错了",
+    "retry": "重试"
+  }
+}
