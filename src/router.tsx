@@ -1,6 +1,7 @@
 import { createBrowserRouter, type RouteObject } from 'react-router-dom'
 import App from './App'
 import ErrorBoundary from './components/ErrorBoundary'
+import ThemeProvider from './components/ThemeProvider'
 import Home from './pages/Home'
 import About from './pages/About'
 import Invest from './pages/Invest'
@@ -12,7 +13,9 @@ const routes: RouteObject[] = [
     path: '/',
     element: (
       <ErrorBoundary>
-        <App />
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
       </ErrorBoundary>
     ),
     children: [
