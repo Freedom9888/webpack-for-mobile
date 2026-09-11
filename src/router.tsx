@@ -1,7 +1,9 @@
 import { createBrowserRouter, type RouteObject } from 'react-router-dom'
+import { QueryClientProvider } from '@tanstack/react-query'
 import App from './App'
 import ErrorBoundary from './components/ErrorBoundary'
 import ThemeProvider from './components/ThemeProvider'
+import { queryClient } from './config/queryClient'
 import Home from './pages/Home'
 import About from './pages/About'
 import Invest from './pages/Invest'
@@ -13,9 +15,11 @@ const routes: RouteObject[] = [
     path: '/',
     element: (
       <ErrorBoundary>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </QueryClientProvider>
       </ErrorBoundary>
     ),
     children: [
