@@ -1,18 +1,13 @@
-import React, { useEffect, Suspense, useState } from 'react'
+import React, { useEffect } from 'react'
+import { Outlet, Link } from 'react-router-dom'
 import styles from './index.module.css'
 import styles1 from './style.module.scss'
 import Countdown from './components/CountDown'
 import debounce from 'lodash/debounce'
-// import { test }from './utils/utils'
-// import { parseFutureTimeToTimestamp } from './utils/utils'
 import './style.css'
 
 console.log('styles.center', styles)
-/**
- * 将格式化时间字符串转换为未来的时间戳（单位：毫秒）
- * @param timeStr 格式化的时间字符串，例如 "2025-06-10 12:30:00"
- * @returns 时间戳（毫秒）
- */
+
 function parseFutureTimeToTimestamp(timeStr: string): number {
   const formatted = timeStr.replace(/-/g, '/') // Safari 兼容性处理
   const timestamp = new Date(formatted).getTime()
@@ -21,21 +16,15 @@ function parseFutureTimeToTimestamp(timeStr: string): number {
   }
   return timestamp
 }
-const Home = React.lazy(() => import('./pages/Home'))
-const About = React.lazy(() => import('./pages/About'))
-const Invest = React.lazy(() => import('./pages/Invest')) // 新增
-const Editor = React.lazy(() => import('./pages/Editor')) // 新增
-const Demo1 = React.lazy(() => import('./pages/demo1')) // 新增
+
 const App: React.FC = () => {
-  const [page, setPage] = useState<'home' | 'about' | 'invest' | 'editor' | 'demo1'>('home')
   const debounced = debounce(() => {
     console.log('666')
-    // test()
   }, 500)
 
   useEffect(() => {
-    let p
-    new Promise(resolve => {
+    let p: (value: number) => void
+    new Promise<number>(resolve => {
       console.log('1')
       p = resolve
     }).then(() => {
@@ -49,12 +38,13 @@ const App: React.FC = () => {
     setTimeout(() => {
       console.log('4')
     }, 0)
-    p(8)
+    p!(8)
     console.log('5')
   }, [])
+
   const testpPromise = () => {
-    let p
-    new Promise(resolve => {
+    let p: (value: number) => void
+    new Promise<number>(resolve => {
       console.log('1')
       p = resolve
     }).then(() => {
@@ -68,9 +58,10 @@ const App: React.FC = () => {
     setTimeout(() => {
       console.log('4')
     }, 0)
-    p(8)
+    p!(8)
     console.log('5')
   }
+
   return (
     <div className="app">
       988Hello, React!
@@ -90,20 +81,12 @@ const App: React.FC = () => {
       </div>
       <div>
         <h1>My App</h1>
-        <div>
-          <button onClick={() => setPage('home')}>Home</button>
-          <button onClick={() => setPage('about')}>About</button>
-          <button onClick={() => setPage('invest')}>Invest</button>
-          <button onClick={() => setPage('editor')}>Editor</button>
-          <button onClick={() => setPage('demo1')}>Demo1</button>
-        </div>
-        <Suspense fallback={<div>Loading...</div>}>
-          {page === 'home' && <Home />}
-          {page === 'about' && <About />}
-          {page === 'invest' && <Invest />}
-          {page === 'editor' && <Editor />}
-          {page === 'demo1' && <Demo1 />}
-        </Suspense>
+        <nav>
+          <Link to="/">Home</Link> | <Link to="/about">About</Link> |{' '}
+          <Link to="/invest">Invest</Link> | <Link to="/editor">Editor</Link> |{' '}
+          <Link to="/demo1">Demo1</Link>
+        </nav>
+        <Outlet />
       </div>
     </div>
   )
