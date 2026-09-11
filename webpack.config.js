@@ -15,6 +15,7 @@ const envFile = isDevelopment ? '.env.development' : '.env.production'
 require('dotenv').config({ path: envFile })
 require('dotenv').config({ path: '.env' })
 const shouldAnalyze = process.env.ANALYZE === 'true'
+const enableMF = process.env.ENABLE_MF === 'true'
 const apiProxyTarget = process.env.API_PROXY_TARGET
 
 const styleLoader = isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader
@@ -50,7 +51,7 @@ module.exports = {
     chunkFilename: isDevelopment ? '[name].chunk.js' : '[name].[contenthash:8].chunk.js',
     assetModuleFilename: 'assets/[name].[hash:8][ext]',
     clean: true,
-    publicPath: 'auto'
+    publicPath: isDevelopment ? '/' : 'auto'
   },
   devServer: {
     static: path.join(__dirname, 'dist'),
@@ -200,16 +201,22 @@ module.exports = {
       __BUILD_TIME__: JSON.stringify(buildTime),
       __DEV__: JSON.stringify(isDevelopment)
     }),
-    new webpack.container.ModuleFederationPlugin({
-      name: 'mobileApp',
-      filename: 'remoteEntry.js',
-      exposes: {},
-      shared: {
-        react: { singleton: true, requiredVersion: '^19.0.0' },
-        'react-dom': { singleton: true, requiredVersion: '^19.0.0' },
-        'react-router-dom': { singleton: true, requiredVersion: '^7.0.0' }
-      }
-    }),
+    ...(enableMF
+      ? [
+          new webpack.container.ModuleFederationPlugin({
+            name: 'mobileApp',
+            filename: 'remoteEntry.js',
+            exposes: {
+              './App': './src/App'
+            },
+            shared: {
+              react: { singleton: true, requiredVersion: '^19.0.0' },
+              'react-dom': { singleton: true, requiredVersion: '^19.0.0' },
+              'react-router-dom': { singleton: true, requiredVersion: '^7.0.0' }
+            }
+          })
+        ]
+      : []),
     new Dotenv({
       path: isDevelopment ? '.env.development' : '.env.production',
       defaults: true,
