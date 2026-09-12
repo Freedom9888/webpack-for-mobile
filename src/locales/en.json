@@ -8,7 +8,8 @@
     "about": "About",
     "invest": "Invest",
     "editor": "Editor",
-    "demo1": "Demo1"
+    "demo1": "Demo1",
+    "login": "Login"
   },
   "home": {
     "title": "Home Page",
@@ -22,5 +23,36 @@
     "loading": "Loading...",
     "error": "Something went wrong",
     "retry": "Try Again"
+  },
+  "auth": {
+    "title": "Welcome",
+    "subtitle": "Sign in or create an account with your phone number",
+    "login": "Sign In",
+    "register": "Sign Up",
+    "phone": "Phone Number",
+    "phonePlaceholder": "Enter your phone number",
+    "smsCode": "Verification Code",
+    "smsCodePlaceholder": "Enter verification code",
+    "getSmsCode": "Get Code",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "or": "or",
+    "socialLogin": "Social Login",
+    "about": "About Us",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "error": {
+      "phoneRequired": "Please enter your phone number",
+      "passwordRequired": "Please enter your password",
+      "smsCodeRequired": "Please enter the verification code",
+      "passwordMismatch": "Passwords do not match",
+      "loginFailed": "Login failed, please try again",
+      "registerFailed": "Registration failed, please try again",
+      "smsFailed": "Failed to send verification code, please try again",
+      "socialLoginFailed": "{{provider}} login failed, please try again"
+    },
+    "loading": "Processing..."
   }
 }

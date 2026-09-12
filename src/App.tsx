@@ -31,7 +31,7 @@ const App: React.FC = () => {
     <div className="app">
       <SkipLink />
       <header role="banner">
-        <div>Hello, React!d</div>
+        <div>Hello, React!</div>
         <div onClick={debouncedEventHandler} className={styles.name}>
           {t('home.title', 'Center')}
         </div>
@@ -42,12 +42,13 @@ const App: React.FC = () => {
       </header>
       <main id="main-content" role="main" tabIndex={-1}>
         <h1>{t('home.appTitle', 'My App')}</h1>
-        <nav role=" navigation" aria-label="Main navigation">
+        <nav role="navigation" aria-label="Main navigation">
           <Link to="/">{t('nav.home', 'Home')}</Link> |{' '}
           <Link to="/about">{t('nav.about', 'About')}</Link> |{' '}
           <Link to="/invest">{t('nav.invest', 'Invest')}</Link> |{' '}
           <Link to="/editor">{t('nav.editor', 'Editor')}</Link> |{' '}
-          <Link to="/demo1">{t('nav.demo1', 'Demo 1')}</Link>
+          <Link to="/demo1">{t('nav.demo1', 'Demo 1')}</Link> |{' '}
+          <Link to="/login">{t('nav.login', 'Login')}</Link>
         </nav>
         <Outlet />
       </main>
