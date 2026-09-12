@@ -2,3 +2,51 @@
 .name {
   background: blue;
 }
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 8px 16px;
+  background: var(--color-bg-secondary);
+  border-radius: 8px;
+}
+
+.userInfo span {
+  font-size: 0.875rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.logoutButton {
+  padding: 6px 12px;
+  background: var(--color-error);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.logoutButton:hover {
+  background: #dc2626;
+}
+
+.navLogoutButton {
+  padding: 4px 12px;
+  background: var(--color-error);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.navLogoutButton:hover {
+  background: #dc2626;
+}

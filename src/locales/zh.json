@@ -53,6 +53,7 @@
       "smsFailed": "验证码发送失败，请重试",
       "socialLoginFailed": "{{provider}} 登录失败，请重试"
     },
-    "loading": "处理中..."
+    "loading": "处理中...",
+    "logout": "退出登录"
   }
 }

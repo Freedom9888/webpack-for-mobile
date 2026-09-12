@@ -53,6 +53,7 @@
       "smsFailed": "Failed to send verification code, please try again",
       "socialLoginFailed": "{{provider}} login failed, please try again"
     },
-    "loading": "Processing..."
+    "loading": "Processing...",
+    "logout": "Logout"
   }
 }

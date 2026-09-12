@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from './components/AuthProvider/useAuth'
 import SkipLink from './components/SkipLink'
 import styles from './index.module.css'
 import styles1 from './style.module.scss'
@@ -19,6 +20,8 @@ function parseFutureTimeToTimestamp(timeStr: string): number {
 
 const App: React.FC = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const { user, isAuthenticated, logout } = useAuth()
   const debouncedEventHandler = debounce(() => {
     // Handle debounced event
   }, 500)
@@ -26,6 +29,11 @@ const App: React.FC = () => {
   useEffect(() => {
     // Initialize app on mount
   }, [])
+
+  const handleLogout = () => {
+    logout()
+    navigate('/login')
+  }
 
   return (
     <div className="app">
@@ -39,6 +47,14 @@ const App: React.FC = () => {
         <div>
           <Countdown endTime={parseFutureTimeToTimestamp('2025-08-30 13:00:00')} />
         </div>
+        {isAuthenticated && user && (
+          <div className={styles.userInfo}>
+            <span>{user.name}</span>
+            <button onClick={handleLogout} className={styles.logoutButton}>
+              {t('auth.logout')}
+            </button>
+          </div>
+        )}
       </header>
       <main id="main-content" role="main" tabIndex={-1}>
         <h1>{t('home.appTitle', 'My App')}</h1>
@@ -48,7 +64,13 @@ const App: React.FC = () => {
           <Link to="/invest">{t('nav.invest', 'Invest')}</Link> |{' '}
           <Link to="/editor">{t('nav.editor', 'Editor')}</Link> |{' '}
           <Link to="/demo1">{t('nav.demo1', 'Demo 1')}</Link> |{' '}
-          <Link to="/login">{t('nav.login', 'Login')}</Link>
+          {isAuthenticated ? (
+            <button onClick={handleLogout} className={styles.navLogoutButton}>
+              {t('auth.logout')}
+            </button>
+          ) : (
+            <Link to="/login">{t('nav.login', 'Login')}</Link>
+          )}
         </nav>
         <Outlet />
       </main>
