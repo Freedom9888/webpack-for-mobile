@@ -1,6 +1,19 @@
-node_modules/
+/**/*.{ts,tsx}
+!**/*.d.ts
+
+/**/*.{js,jsx}
+!**/node_modules
+!**/dist
+
+/**/*.json
+!**/package.json
+!**/tsconfig.json
+!**/webpack.config.js
+
+# 特定目录
 dist/
 build/
+node_modules/
+.next/
+.turbo/
 coverage/
-*.min.js
-*.min.css

@@ -1,38 +1,58 @@
-# Dependencies
-node_modules/
-
-# Build output
-/dist/
-/build/
-
-# Environment files
+# 环境变量本地文件，不要提交
 .env.local
 .env.*.local
 
-# IDE
-.idea/
-*.swp
-*.swo
-*~
+# 依赖文件
+node_modules/
+.pnpm-store/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
 
-# OS
-.DS_Store
-Thumbs.db
+# 构建输出
+dist/
+build/
+.next/
 
-# Logs
+# 日志
+logs/
 *.log
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Testing
-/coverage/
+# 编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
 
-# Bundle analysis
-report.html
-stats.json
+# IDE
+.atom/
+.vscode/
+*.sublime-workspace
+*.sublime-project
 
-# Temporary files
-*.tgz
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 测试覆盖率
+coverage/
+.nyc_output/
+
+# 临时文件
 *.tmp
+*.temp
+.cache/
+.turbo/
+
+# 打包分析
+analysis/
