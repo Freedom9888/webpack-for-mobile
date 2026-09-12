@@ -31,20 +31,18 @@ const App: React.FC = () => {
     <div className="app">
       <SkipLink />
       <header role="banner">
-        <div>Hello, React!</div>
+        <div>Hello, React!d</div>
         <div onClick={debouncedEventHandler} className={styles.name}>
           {t('home.title', 'Center')}
         </div>
-        <div className={styles1.center}>
-          {t('home.subtitle', 'Center 1')}
-        </div>
+        <div className={styles1.center}>{t('home.subtitle', 'Center 1')}</div>
         <div>
           <Countdown endTime={parseFutureTimeToTimestamp('2025-08-30 13:00:00')} />
         </div>
       </header>
       <main id="main-content" role="main" tabIndex={-1}>
         <h1>{t('home.appTitle', 'My App')}</h1>
-        <nav role="navigation" aria-label="Main navigation">
+        <nav role=" navigation" aria-label="Main navigation">
           <Link to="/">{t('nav.home', 'Home')}</Link> |{' '}
           <Link to="/about">{t('nav.about', 'About')}</Link> |{' '}
           <Link to="/invest">{t('nav.invest', 'Invest')}</Link> |{' '}
