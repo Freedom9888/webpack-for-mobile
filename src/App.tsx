@@ -45,7 +45,7 @@ const App: React.FC = () => {
         </div>
         <div className={styles1.center}>{t('home.subtitle', 'Center 1')}</div>
         <div>
-          <Countdown endTime={parseFutureTimeToTimestamp('2025-08-30 13:00:00')} />
+          <Countdown endTime={parseFutureTimeToTimestamp('2027-08-30 13:00:00')} />
         </div>
         {isAuthenticated && user && (
           <div className={styles.userInfo}>
