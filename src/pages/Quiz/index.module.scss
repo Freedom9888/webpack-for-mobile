@@ -1,0 +1,481 @@
+/**
+ * 「スタイル診断」页面样式（设计稿 590px 截图实测 → ×1.2712 = rpx，750 基准）。
+ *
+ * 实测要点：
+ *   - 卡片底边（y906）以上为纯白（含 header / 进度条 / 卡片两侧留白），以下为米黄 #FFFBCE
+ *   - 卡片左右边距 24px（30rpx），黑色 2px 细边框，无顶边框（由进度条下划线充当）
+ *   - 卡片底部中央有白色半圆挂耳，向下凸入米黄区
+ *   - 列表题未选项整体浅灰（#ABABAB），选中转黑 + 黄色手绘圈
+ */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* 卡片底边以下：米黄 */
+  background: #fffbce;
+  color: #1a1a1a;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'PingFang SC', 'Noto Sans JP',
+    'Helvetica Neue', sans-serif;
+}
+
+/* 卡片底边以上：纯白区域 */
+.topArea {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+/* ---------------- 顶部标题栏 ---------------- */
+.header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  padding: 26rpx 30rpx 14rpx;
+  background: #ffffff;
+}
+
+.headerButton {
+  flex-shrink: 0;
+  width: 56rpx;
+  height: 56rpx;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  svg {
+    width: 42rpx;
+    height: 42rpx;
+    display: block;
+  }
+
+  &:active {
+    opacity: 0.55;
+  }
+}
+
+.headerTitle {
+  flex: 1;
+  margin: 0;
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+}
+
+/* ---------------- 题目卡片 ---------------- */
+.card {
+  position: relative;
+  flex-shrink: 0;
+  /* 左右边距实测 24px(30rpx)；无顶边框，下边与米黄区齐平 */
+  margin: 0 30rpx;
+  padding: 30rpx 30rpx 34rpx;
+  background: #ffffff;
+  border: 3rpx solid #1a1a1a;
+  border-top: none;
+  border-radius: 0 0 26rpx 26rpx;
+  box-sizing: border-box;
+}
+
+/* 黄色丝带 */
+.ribbon {
+  position: relative;
+  width: 396rpx;
+  height: 124rpx;
+  margin: 0 auto 6rpx;
+}
+
+.ribbonShape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ribbonText {
+  position: absolute;
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+  color: #1a1a1a;
+}
+
+/* 左缎带上的文案：向右上扬 */
+.ribbonTextLeft {
+  left: 3%;
+  width: 46%;
+  top: 36%;
+  text-align: center;
+  transform: rotate(-7deg);
+}
+
+/* 右缎带上的文案：位置更低、近乎水平 */
+.ribbonTextRight {
+  left: 47%;
+  width: 46%;
+  top: 44%;
+  text-align: center;
+  transform: rotate(-4deg);
+}
+
+.questionTitle {
+  margin: 26rpx 0 0;
+  font-size: 42rpx;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+/* 标题下的粗横线 */
+.cardBody {
+  margin-top: 22rpx;
+  padding-top: 0;
+  border-top: 7rpx solid #1a1a1a;
+}
+
+/* ---------------- 题型一：2×2 网格 ---------------- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* 实测单元格高约 257px → 327rpx */
+  min-height: 327rpx;
+  padding: 26rpx 22rpx 30rpx;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  /* 第 2 行起加顶部分割线（细黑） */
+  &:nth-child(n + 3) {
+    border-top: 3rpx solid #1a1a1a;
+  }
+
+  /* 右列加左分割线 */
+  &:nth-child(even) {
+    border-left: 3rpx solid #1a1a1a;
+  }
+
+  /* 锁定后的禁用态：线稿置灰（与设计稿的锁定观感一致），文字保持可读 */
+  &:disabled {
+    color: #b9b9b9;
+    cursor: not-allowed;
+  }
+}
+
+.letter {
+  font-size: 36rpx;
+  font-weight: 700;
+  line-height: 1;
+  color: #1a1a1a;
+}
+
+.cellArtWrap {
+  position: relative;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 190rpx;
+  height: 150rpx;
+  margin: 10rpx 0 14rpx;
+}
+
+.artEye {
+  width: 168rpx;
+  height: 92rpx;
+  display: block;
+}
+
+/* 竖版插画（手掌/肤色）在网格中的尺寸 */
+.artPortrait {
+  width: 118rpx;
+  height: 148rpx;
+  display: block;
+}
+
+/* 网格选中态的手绘圈（套在眼睛插画外） */
+.cellCircle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 230rpx;
+  height: 170rpx;
+  transform: translate(-50%, -50%) rotate(-4deg);
+  pointer-events: none;
+}
+
+.cellText {
+  font-size: 30rpx;
+  line-height: 1.5;
+  color: #3a3a3a;
+  text-align: left;
+}
+
+/* ---------------- 题型二：纵向列表 ---------------- */
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listItem {
+  & + & {
+    border-top: 3rpx solid #1a1a1a;
+  }
+}
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  width: 100%;
+  /* 实测行高约 172px → 218rpx */
+  min-height: 218rpx;
+  padding: 20rpx 10rpx 20rpx 14rpx;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  /* 未选中：整体浅灰（插画与文字同步置灰） */
+  color: #ababab;
+}
+
+.rowSelected {
+  color: #2a2a2a;
+}
+
+.rowArtWrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 190rpx;
+  height: 176rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artFigure {
+  width: 132rpx;
+  height: 164rpx;
+  display: block;
+}
+
+/* 选中态黄色手绘圈（不闭合、略有出头的椭圆） */
+.rowCircle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 200rpx;
+  height: 190rpx;
+  transform: translate(-50%, -50%) rotate(-6deg);
+  pointer-events: none;
+}
+
+.rowText {
+  flex: 1;
+  min-width: 0;
+  font-size: 32rpx;
+  line-height: 1.6;
+  /* 颜色继承 .row / .rowSelected 的灰黑状态 */
+  color: inherit;
+}
+
+.rowLetter {
+  margin-right: 4rpx;
+  font-weight: 700;
+  color: inherit;
+}
+
+/* 卡片底部中央的白色半圆挂耳（向下凸出） */
+.tab {
+  position: absolute;
+  left: 50%;
+  bottom: -3rpx;
+  width: 84rpx;
+  height: 42rpx;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border: 3rpx solid #1a1a1a;
+  border-top: none;
+  border-radius: 0 0 84rpx 84rpx;
+  box-sizing: border-box;
+}
+
+/* ---------------- 底部操作区 ---------------- */
+.footer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  /* 实测：按钮左右边距 52px(66rpx)，两按钮分列两端 */
+  gap: 60rpx;
+  padding: 44rpx 66rpx calc(44rpx + env(safe-area-inset-bottom, 0));
+  background: #fffbce;
+}
+
+/* 单个按钮时贴右（设计稿第 1 题只有「次の質問」且右对齐） */
+.prevButton {
+  margin-right: auto;
+}
+
+.nextButton,
+.submitButton {
+  margin-left: auto;
+}
+
+.prevButton,
+.nextButton,
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  /* 实测：按钮高约 66px → 84rpx，胶囊形 */
+  height: 84rpx;
+  padding: 0 32rpx;
+  border-radius: 42rpx;
+  font-size: 32rpx;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    opacity 0.15s ease,
+    background-color 0.15s ease;
+
+  &:active {
+    opacity: 0.75;
+  }
+
+  /* 尚未作答：暂时禁用 */
+  &:disabled {
+    cursor: not-allowed;
+    background: #f1efe6;
+    color: #b4b2a8;
+    border-color: #b4b2a8;
+
+    .btnArrowLeft,
+    .btnArrowRight {
+      background: #b4b2a8;
+
+      &::before {
+        border-color: #b4b2a8;
+      }
+    }
+
+    &:active {
+      opacity: 1;
+    }
+  }
+}
+
+.prevButton,
+.nextButton {
+  background: #ffffff;
+  border: 3rpx solid #1a1a1a;
+  color: #1a1a1a;
+}
+
+/*
+ * 按钮内的手绘箭头：斜线 + 横线组合（设计稿为「⟍___ 前の質問」「次の質問 ___⟋」）。
+ * 用一条横线 + 一端上翘的斜线实现，笔画为渐细的手绘感。
+ */
+.btnArrowLeft,
+.btnArrowRight {
+  position: relative;
+  width: 96rpx;
+  height: 3rpx;
+  background: #1a1a1a;
+  flex-shrink: 0;
+}
+
+.btnArrowLeft::before,
+.btnArrowRight::before {
+  content: '';
+  position: absolute;
+  top: -1rpx;
+  width: 30rpx;
+  height: 3rpx;
+  border-radius: 2rpx;
+  background: inherit;
+}
+
+.btnArrowLeft::before {
+  left: 4rpx;
+  transform: rotate(-42deg);
+  transform-origin: left center;
+}
+
+.btnArrowRight::before {
+  right: 4rpx;
+  transform: rotate(42deg);
+  transform-origin: right center;
+}
+
+.btnArrowLeft {
+  margin-right: 2rpx;
+}
+
+.btnArrowRight {
+  margin-left: 2rpx;
+}
+
+/* 最后一题：黑色提交按钮 + 黄色对勾圆 */
+.submitButton {
+  background: #1a1a1a;
+  border: 3rpx solid #1a1a1a;
+  color: #ffffff;
+  padding: 0 44rpx;
+}
+
+.checkCircle {
+  flex-shrink: 0;
+  width: 58rpx;
+  height: 58rpx;
+  border-radius: 50%;
+  background: #f7e84d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 34rpx;
+    height: 34rpx;
+    display: block;
+  }
+}
+
+/* ---------------- 提交反馈 ---------------- */
+.resultBar {
+  position: fixed;
+  left: 50%;
+  bottom: 220rpx;
+  transform: translateX(-50%);
+  padding: 18rpx 32rpx;
+  border-radius: 12rpx;
+  background: rgba(26, 26, 26, 0.88);
+  color: #ffffff;
+  font-size: 26rpx;
+  line-height: 1.4;
+  text-align: center;
+  max-width: 560rpx;
+  z-index: 10;
+  pointer-events: none;
+}

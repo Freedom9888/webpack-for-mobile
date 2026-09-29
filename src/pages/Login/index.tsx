@@ -2,20 +2,33 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '@/components/AuthProvider/useAuth'
+import { isOAuthConfigured, type OAuthProvider } from '@/config/oauth'
+import { LineIcon, GoogleIcon, AppleIcon, FacebookIcon } from '@/components/SocialIcons'
 import styles from './index.module.scss'
 
-type Tab = 'login' | 'register'
-type SocialProvider = 'line' | 'google' | 'apple' | 'facebook'
+type View = 'main' | 'register' | 'login'
 
 const SMS_COUNTDOWN = 60
+
+const socialProviders: {
+  key: OAuthProvider
+  label: string
+  bg: string
+  Icon: React.FC
+}[] = [
+  { key: 'line', label: 'LINE', bg: '#06C755', Icon: LineIcon },
+  { key: 'google', label: 'Google', bg: '#ffffff', Icon: GoogleIcon },
+  { key: 'apple', label: 'Apple', bg: '#000000', Icon: AppleIcon },
+  { key: 'facebook', label: 'Facebook', bg: '#1877F2', Icon: FacebookIcon }
+]
 
 const Login: React.FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { login, register, socialLogin, requestSmsCode, isAuthenticated } = useAuth()
 
-  const [tab, setTab] = useState<Tab>('login')
-  const [phone, setPhone] = useState('')
+  const [view, setView] = useState<View>('main')
+  const [account, setAccount] = useState('')
   const [smsCode, setSmsCode] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -49,15 +62,29 @@ const Login: React.FC = () => {
     }, 1000)
   }
 
+  const handleSocialLogin = (provider: OAuthProvider) => {
+    setError('')
+    const displayName = socialProviders.find(p => p.key === provider)?.label ?? provider
+    if (!isOAuthConfigured(provider)) {
+      setError(t('auth.error.oauthNotConfigured', { provider: displayName }))
+      return
+    }
+    try {
+      socialLogin(provider)
+    } catch {
+      setError(t('auth.error.socialLoginFailed', { provider: displayName }))
+    }
+  }
+
   const handleRequestSms = async () => {
-    if (!phone) {
+    if (!account) {
       setError(t('auth.error.phoneRequired'))
       return
     }
     setError('')
     setLoading(true)
     try {
-      await requestSmsCode(phone)
+      await requestSmsCode(account)
       startCountdown()
     } catch {
       setError(t('auth.error.smsFailed'))
@@ -68,7 +95,7 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     setError('')
-    if (!phone) {
+    if (!account) {
       setError(t('auth.error.phoneRequired'))
       return
     }
@@ -78,7 +105,7 @@ const Login: React.FC = () => {
     }
     setLoading(true)
     try {
-      await login({ phone, password })
+      await login({ phone: account, password })
     } catch {
       setError(t('auth.error.loginFailed'))
     } finally {
@@ -88,7 +115,7 @@ const Login: React.FC = () => {
 
   const handleRegister = async () => {
     setError('')
-    if (!phone) {
+    if (!account) {
       setError(t('auth.error.phoneRequired'))
       return
     }
@@ -106,7 +133,7 @@ const Login: React.FC = () => {
     }
     setLoading(true)
     try {
-      await register({ phone, smsCode, password })
+      await register({ phone: account, smsCode, password })
     } catch {
       setError(t('auth.error.registerFailed'))
     } finally {
@@ -114,75 +141,55 @@ const Login: React.FC = () => {
     }
   }
 
-  const handleSocialLogin = async (provider: SocialProvider) => {
+  const resetForm = () => {
+    setAccount('')
+    setSmsCode('')
+    setPassword('')
+    setConfirmPassword('')
     setError('')
-    setLoading(true)
-    try {
-      await socialLogin(provider)
-    } catch {
-      setError(t('auth.error.socialLoginFailed', { provider }))
-    } finally {
-      setLoading(false)
-    }
+    setCountdown(0)
+    if (timerRef.current) clearInterval(timerRef.current)
   }
 
-  const socialProviders: { key: SocialProvider; label: string; color: string }[] = [
-    { key: 'line', label: 'LINE', color: '#06C755' },
-    { key: 'google', label: 'Google', color: '#4285F4' },
-    { key: 'apple', label: 'Apple', color: '#000000' },
-    { key: 'facebook', label: 'Facebook', color: '#1877F2' }
-  ]
+  const goBack = () => {
+    resetForm()
+    setView('main')
+  }
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>{t('auth.title')}</h1>
-        <p className={styles.subtitle}>{t('auth.subtitle')}</p>
-      </div>
-
-      <div className={styles.tabs}>
-        <button
-          className={`${styles.tab} ${tab === 'login' ? styles.tabActive : ''}`}
-          onClick={() => {
-            setTab('login')
-            setError('')
-          }}
-        >
-          {t('auth.login')}
+  if (view === 'register') {
+    return (
+      <div className={styles.container}>
+        <button className={styles.backButton} onClick={goBack} aria-label={t('auth.back')}>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
         </button>
-        <button
-          className={`${styles.tab} ${tab === 'register' ? styles.tabActive : ''}`}
-          onClick={() => {
-            setTab('register')
-            setError('')
-          }}
-        >
-          {t('auth.register')}
-        </button>
-      </div>
+        <h1 className={styles.formTitle}>{t('auth.register')}</h1>
 
-      {error && <div className={styles.error}>{error}</div>}
+        {error && <div className={styles.error}>{error}</div>}
 
-      <div className={styles.form}>
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>{t('auth.phone')}</label>
-          <div className={styles.phoneInput}>
-            <span className={styles.countryCode}>+86</span>
+        <div className={styles.form}>
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>{t('auth.account')}</label>
             <input
-              type="tel"
+              type="text"
               className={styles.input}
-              placeholder={t('auth.phonePlaceholder')}
-              value={phone}
-              onChange={e => setPhone(e.target.value.replace(/\D/g, '').slice(0, 11))}
-              maxLength={11}
+              placeholder={t('auth.accountPlaceholder')}
+              value={account}
+              onChange={e => setAccount(e.target.value)}
             />
           </div>
-        </div>
 
-        {tab === 'register' && (
           <div className={styles.inputGroup}>
             <label className={styles.label}>{t('auth.smsCode')}</label>
-            <div className={styles.smsInput}>
+            <div className={styles.smsRow}>
               <input
                 type="text"
                 className={styles.input}
@@ -194,26 +201,24 @@ const Login: React.FC = () => {
               <button
                 className={styles.smsButton}
                 onClick={handleRequestSms}
-                disabled={countdown > 0 || loading || !phone}
+                disabled={countdown > 0 || loading || !account}
               >
                 {countdown > 0 ? `${countdown}s` : t('auth.getSmsCode')}
               </button>
             </div>
           </div>
-        )}
 
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>{t('auth.password')}</label>
-          <input
-            type="password"
-            className={styles.input}
-            placeholder={t('auth.passwordPlaceholder')}
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-        </div>
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>{t('auth.password')}</label>
+            <input
+              type="password"
+              className={styles.input}
+              placeholder={t('auth.passwordPlaceholder')}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
 
-        {tab === 'register' && (
           <div className={styles.inputGroup}>
             <label className={styles.label}>{t('auth.confirmPassword')}</label>
             <input
@@ -224,15 +229,121 @@ const Login: React.FC = () => {
               onChange={e => setConfirmPassword(e.target.value)}
             />
           </div>
-        )}
 
-        <button
-          className={styles.submitButton}
-          onClick={tab === 'login' ? handleLogin : handleRegister}
-          disabled={loading}
-        >
-          {loading ? t('auth.loading') : tab === 'login' ? t('auth.login') : t('auth.register')}
+          <button className={styles.submitButton} onClick={handleRegister} disabled={loading}>
+            {loading ? t('auth.processing') : t('auth.register')}
+          </button>
+        </div>
+
+        <p className={styles.switchText}>
+          {t('auth.hasAccount')}{' '}
+          <button
+            className={styles.switchLink}
+            onClick={() => {
+              resetForm()
+              setView('login')
+            }}
+          >
+            {t('auth.login')}
+          </button>
+        </p>
+      </div>
+    )
+  }
+
+  if (view === 'login') {
+    return (
+      <div className={styles.container}>
+        <button className={styles.backButton} onClick={goBack} aria-label={t('auth.back')}>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
         </button>
+        <h1 className={styles.formTitle}>{t('auth.login')}</h1>
+
+        {error && <div className={styles.error}>{error}</div>}
+
+        <div className={styles.form}>
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>{t('auth.account')}</label>
+            <input
+              type="text"
+              className={styles.input}
+              placeholder={t('auth.accountPlaceholder')}
+              value={account}
+              onChange={e => setAccount(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label className={styles.label}>{t('auth.password')}</label>
+            <input
+              type="password"
+              className={styles.input}
+              placeholder={t('auth.passwordPlaceholder')}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
+
+          <button className={styles.submitButton} onClick={handleLogin} disabled={loading}>
+            {loading ? t('auth.processing') : t('auth.login')}
+          </button>
+        </div>
+
+        <p className={styles.switchText}>
+          {t('auth.noAccount')}{' '}
+          <button
+            className={styles.switchLink}
+            onClick={() => {
+              resetForm()
+              setView('register')
+            }}
+          >
+            {t('auth.register')}
+          </button>
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.hero}>
+        <h1 className={styles.heroTitle}>TAO</h1>
+        <p className={styles.heroSubtitle}>{t('auth.heroSubtitle')}</p>
+      </div>
+
+      <div className={styles.socialSection}>
+        {error && <div className={styles.error}>{error}</div>}
+
+        {socialProviders.map(({ key, label, bg, Icon }) => (
+          <button
+            key={key}
+            className={styles.socialButton}
+            style={{
+              backgroundColor: bg,
+              color: key === 'google' ? '#1f1f1f' : '#fff',
+              border: key === 'google' ? '1px solid var(--color-border)' : 'none'
+            }}
+            onClick={() => handleSocialLogin(key)}
+            disabled={loading}
+          >
+            <span className={styles.socialIcon}>
+              <Icon />
+            </span>
+            <span className={styles.socialLabel}>
+              {t('auth.continueWith', { provider: label })}
+            </span>
+          </button>
+        ))}
       </div>
 
       <div className={styles.divider}>
@@ -241,36 +352,39 @@ const Login: React.FC = () => {
         <span className={styles.dividerLine} />
       </div>
 
-      <div className={styles.socialLogin}>
-        <p className={styles.socialTitle}>{t('auth.socialLogin')}</p>
-        <div className={styles.socialButtons}>
-          {socialProviders.map(provider => (
-            <button
-              key={provider.key}
-              className={styles.socialButton}
-              style={{ borderColor: provider.color }}
-              onClick={() => handleSocialLogin(provider.key)}
-              disabled={loading}
-            >
-              <span className={styles.socialIcon} style={{ color: provider.color }}>
-                {provider.label[0]}
-              </span>
-              <span>{provider.label}</span>
-            </button>
-          ))}
-        </div>
-      </div>
+      <button className={styles.registerButton} onClick={() => setView('register')}>
+        {t('auth.registerWithEmail')}
+      </button>
 
       <div className={styles.footer}>
         <a href="#" className={styles.footerLink}>
-          {t('auth.about')}
+          {t('auth.aboutTAO')} →
         </a>
-        <a href="#" className={styles.footerLink}>
-          {t('auth.terms')}
-        </a>
-        <a href="#" className={styles.footerLink}>
-          {t('auth.privacy')}
-        </a>
+        <div className={styles.footerSection}>
+          <p className={styles.footerSectionTitle}>{t('auth.paymentMethods')}</p>
+          <div className={styles.paymentIcons}>
+            <span className={styles.paymentBadge}>VISA</span>
+            <span className={styles.paymentBadge}>MC</span>
+            <span className={styles.paymentBadge}>AMEX</span>
+            <span className={styles.paymentBadge}>PayPay</span>
+          </div>
+        </div>
+        <div className={styles.footerLinks}>
+          <a href="#" className={styles.footerLink}>
+            {t('auth.taoNote')}
+          </a>
+          <a href="#" className={styles.footerLink}>
+            {t('auth.taoWiki')}
+          </a>
+        </div>
+        <div className={styles.footerBottom}>
+          <a href="#" className={styles.footerSmallLink}>
+            {t('auth.terms')}
+          </a>
+          <a href="#" className={styles.footerSmallLink}>
+            {t('auth.privacy')}
+          </a>
+        </div>
       </div>
     </div>
   )

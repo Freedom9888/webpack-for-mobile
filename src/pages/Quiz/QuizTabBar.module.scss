@@ -1,0 +1,107 @@
+/**
+ * 诊断进度 tab 样式（设计稿 590px 实测 → ×1.2712 = rpx/750 基准）。
+ *
+ * 实测尺寸：
+ *   顶部短横线 y190（2px 厚），数字 y193~208（高 15px），下划线 y214（2px），
+ *   斜线贯穿 y185~211（高约 26px，宽 2px），每格宽约 64px（81rpx）。
+ *   下划线与卡片上边框重合：卡片无顶边框，由此线的连续段代替。
+ */
+
+.tabBar {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  /* 与卡片同宽对齐（卡片左右边距 30rpx） */
+  margin: 0 30rpx;
+}
+
+.tab {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:not(:disabled):active {
+    opacity: 0.55;
+  }
+}
+
+/* 分隔斜线：2px 宽、贯穿数字行上下，旋转 ±20deg */
+.slash {
+  position: absolute;
+  left: -1rpx;
+  top: -8rpx;
+  width: 3rpx;
+  height: 42rpx;
+  background: #1a1a1a;
+  border-radius: 2rpx;
+}
+
+.slashRight {
+  transform: rotate(20deg);
+}
+
+.slashLeft {
+  transform: rotate(-20deg);
+}
+
+/* 收尾斜线：贴在最后一格右端 */
+.trailingSlash {
+  left: auto;
+  right: -1rpx;
+}
+
+/* 顶部短横线：从斜线顶端向右延伸至本格右端（下一格斜线处） */
+.topRule {
+  display: block;
+  height: 3rpx;
+  margin: 0 2rpx 5rpx 4rpx;
+  background: #1a1a1a;
+}
+
+.numberRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14rpx;
+  height: 42rpx;
+}
+
+.number {
+  font-size: 30rpx;
+  line-height: 1;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1rpx;
+}
+
+/* 当前题右侧的实心圆点（实测直径约 11px → 14rpx） */
+.dot {
+  width: 13rpx;
+  height: 13rpx;
+  border-radius: 50%;
+  background: #1a1a1a;
+  flex-shrink: 0;
+}
+
+/*
+ * 下划线 = 卡片上边框连续段：整格跨度（与相邻格相连），
+ * 当前题不渲染 → 形成开口。贴在 tab 行底部，与卡片边框衔接。
+ */
+.bottomRule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2rpx;
+  height: 3rpx;
+  background: #1a1a1a;
+}

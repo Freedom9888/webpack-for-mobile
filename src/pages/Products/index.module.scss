@@ -1,0 +1,279 @@
+/**
+ * 商品列表页样式。
+ * 尺寸依据设计稿实测（屏幕宽 225 设计px = 750rpx，故 1 设计px ≈ 3.33rpx）。
+ */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  color: #1f2329;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei',
+    sans-serif;
+}
+
+.screen {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 750rpx;
+  margin: 0 auto;
+  background: #ffffff;
+  min-height: 0;
+}
+
+.scrollArea {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------------- 搜索栏 ---------------- */
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  /* 实测：搜索框左边距 27rpx、右边距 30rpx */
+  margin: 16rpx 28rpx 0;
+  height: 80rpx;
+  padding: 0 24rpx;
+  border-radius: 40rpx;
+  background: #f2f3f5;
+
+  > svg {
+    flex-shrink: 0;
+    width: 32rpx;
+    height: 32rpx;
+  }
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 27rpx;
+  color: #1f2329;
+
+  &::placeholder {
+    color: #9aa0a6;
+  }
+
+  /* 去掉 search 类型自带的清除按钮，保持与设计稿一致 */
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+.scanButton {
+  flex-shrink: 0;
+  width: 40rpx;
+  height: 40rpx;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+/* ---------------- 分类 tab ---------------- */
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 0 22rpx;
+  margin-top: 8rpx;
+}
+
+.tab {
+  position: relative;
+  flex: 1;
+  height: 76rpx;
+  border: none;
+  background: transparent;
+  font-size: 29rpx;
+  color: #4a5058;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+.tabActive {
+  color: #2e7cf6;
+  font-weight: 600;
+
+  /* 选中态下方短横线（设计稿为蓝色下划线） */
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 8rpx;
+    width: 34rpx;
+    height: 4rpx;
+    border-radius: 2rpx;
+    background: #2e7cf6;
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------------- 商品列表 ---------------- */
+.list {
+  margin: 0;
+  padding: 8rpx 0 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /*
+   * 实测设计稿行节距 ≈233rpx，但设计稿是纵向压缩的示意图，
+   * 直接套用会让真实设备（更高）上列表过于稀疏。
+   * 这里以 233rpx 为基准，用 vh 让间距随屏高自适应：
+   * 矮屏保持紧凑（≈207rpx），高屏适度舒展（≈233rpx）。
+   */
+  height: clamp(207rpx, 23vh, 233rpx);
+}
+
+.itemMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  height: 100%;
+  padding: 0 0 0 28rpx;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    background: #fafbfc;
+  }
+}
+
+.thumb {
+  flex-shrink: 0;
+  /* 实测：缩略图约 160rpx 见方 */
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 18rpx;
+  background: #eef4fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.thumbArt {
+  width: 128rpx;
+  height: 128rpx;
+  display: block;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1f2329;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spec {
+  font-size: 24rpx;
+  color: #8a9099;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #f5391f;
+}
+
+/* 加入购物车圆形加号按钮 */
+.addButton {
+  flex-shrink: 0;
+  /* 实测：按钮直径约 52rpx */
+  width: 52rpx;
+  height: 52rpx;
+  margin-right: 26rpx;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #2e7cf6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s ease;
+
+  svg {
+    width: 30rpx;
+    height: 30rpx;
+    display: block;
+  }
+
+  &:active {
+    opacity: 0.75;
+  }
+}
+
+.empty {
+  margin: 120rpx 0 0;
+  text-align: center;
+  font-size: 28rpx;
+  color: #8a9099;
+}
+
+/* ---------------- 轻提示 ---------------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 280rpx;
+  transform: translateX(-50%);
+  max-width: 560rpx;
+  padding: 18rpx 32rpx;
+  border-radius: 12rpx;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  font-size: 26rpx;
+  line-height: 1.4;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}

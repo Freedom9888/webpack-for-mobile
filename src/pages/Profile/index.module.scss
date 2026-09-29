@@ -1,0 +1,261 @@
+/**
+ * 个人中心页面样式（对照设计稿 750rpx 基准还原）
+ *
+ * 项目中 postcss-px-to-viewport 配置为 unitToConvert: 'rpx' + viewportWidth: 750，
+ * 因此此处所有尺寸一律使用 rpx，构建时会被换算为 vw，实现移动端等比缩放。
+ */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f7fa;
+  /* 设计稿为固定配色的品牌蓝头部，不跟随主题变量，避免暗色主题下失真 */
+  color: #1f2329;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei',
+    sans-serif;
+}
+
+/* 手机内容区：桌面端浏览时限制最大宽度并居中，与设计稿一致 */
+.screen {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 750rpx;
+  margin: 0 auto;
+  background: #f5f7fa;
+}
+
+/* ---------------- 头部：蓝色渐变 ---------------- */
+.header {
+  position: relative;
+  /* 实测：蓝色头部约占屏高 31%，底部在头像下方留出明显蓝色 */
+  height: 500rpx;
+  background: linear-gradient(176deg, #1a86ff 0%, #2e8cff 52%, #4f9dfd 100%);
+  box-sizing: border-box;
+}
+
+.settingsButton {
+  position: absolute;
+  top: 225rpx;
+  right: 40rpx;
+  width: 52rpx;
+  height: 52rpx;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 44rpx;
+    height: 44rpx;
+    display: block;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 28rpx;
+  /* 实测：屏幕顶 -> 头像顶 = 234rpx */
+  padding: 234rpx 40rpx 0;
+}
+
+.avatarWrapper {
+  flex-shrink: 0;
+  /* 实测：头像圆环直径 234rpx */
+  width: 234rpx;
+  height: 234rpx;
+  padding: 6rpx;
+  border-radius: 50%;
+  background: #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.06);
+}
+
+.avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userMeta {
+  min-width: 0;
+  color: #ffffff;
+}
+
+.userName {
+  margin: 0;
+  /* 实测：名字字高约 33rpx */
+  font-size: 34rpx;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 2rpx;
+  color: #ffffff;
+}
+
+.userId {
+  margin: 14rpx 0 0;
+  /* 实测：ID 行文字略小于名字 */
+  font-size: 26rpx;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* ---------------- 功能列表卡片 ---------------- */
+.card {
+  position: relative;
+  z-index: 1;
+  /*
+   * 垂直结构实测（750rpx 基准）：
+   *   头像：顶部 234rpx、直径 234rpx（底部 468rpx）
+   *   头部底 500rpx，卡片顶 536rpx => 头像下方留约 32rpx 蓝色
+   *   卡片左右边距实测 27~30rpx
+   */
+  margin: 36rpx 28rpx 0;
+  background: #ffffff;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(15, 60, 130, 0.06);
+  overflow: hidden;
+}
+
+.menuList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menuItem {
+  position: relative;
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  /* 实测：单行高度约 96rpx（卡片总高 ≈480rpx，占屏高 30%） */
+  height: 96rpx;
+  padding: 0 32rpx;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.15s ease;
+
+  &:active {
+    background-color: #f5f7fa;
+  }
+}
+
+.menuIcon {
+  flex-shrink: 0;
+  /* 实测：列表图标约 40rpx */
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+.menuLabel {
+  flex: 1;
+  min-width: 0;
+  /* 实测：列表文字约 30rpx */
+  font-size: 30rpx;
+  color: #1f2329;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menuChevron {
+  flex-shrink: 0;
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+/* 分隔线：与设计稿一致，左对齐到文字起始位置 */
+.menuDivider {
+  display: block;
+  /* 1 物理像素细线，与项目既有规范一致（见 Login/index.module.scss） */
+  height: 1px;
+  margin-left: 96rpx;
+  background: #f0f1f3;
+}
+
+/* ---------------- 登录 / 退出入口 ---------------- */
+.loginEntry,
+.logoutEntry {
+  margin: 32rpx 28rpx 24rpx;
+  height: 88rpx;
+  border: none;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s ease;
+
+  &:active {
+    opacity: 0.85;
+  }
+}
+
+.loginEntry {
+  background: #1a86ff;
+  color: #ffffff;
+}
+
+.logoutEntry {
+  background: #ffffff;
+  color: #ef4444;
+}
+
+/* ---------------- 轻提示 ---------------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 240rpx;
+  transform: translateX(-50%);
+  max-width: 560rpx;
+  padding: 18rpx 32rpx;
+  border-radius: 12rpx;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  font-size: 26rpx;
+  line-height: 1.4;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}

@@ -1,0 +1,148 @@
+/**
+ * 风格诊断进度 Tab 样式（设计稿 590px 截图逐像素实测 → ×1.2712 ≈ rpx/750 基准）。
+ *
+ * 实测（590px 基准）：
+ *   顶部横线 y190（2px），数字 y197~208（高 12px → 字号约 22rpx），
+ *   底部横线 y214（2px）；斜线倾角约 31°，立于格边界、
+ *   顶部横线在斜线处断开（断口左右等距，梯形居中对称）。
+ *   数字紧跟斜线左对齐；当前题菱形对角线约 8px。
+ *   单位 rpx，由 postcss-px-to-viewport（750 基准）转 vw。
+ */
+
+.tabBar {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  /* 与设计稿卡片左右边距一致（斜线底端会探出格边界，需页边距容纳） */
+  margin: 0 30rpx;
+}
+
+.tab {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    opacity: 0.55;
+  }
+}
+
+/* 通用的淡出态：配合各元素自身的 transition 实现丝滑切换 */
+.hidden {
+  opacity: 0;
+}
+
+/* 分隔斜线：倾角约 31°，立于格边界缺口中；角度/透明度可平滑过渡 */
+.slash {
+  position: absolute;
+  left: -5rpx;
+  top: 0;
+  width: 2.5rpx;
+  height: 32rpx;
+  background: #1a1a1a;
+  border-radius: 2rpx;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.slashRight {
+  transform: rotate(31deg);
+}
+
+.slashLeft {
+  transform: rotate(-31deg);
+}
+
+/* 当前题右侧斜线：锚定在格右端、左倾「\」，与左侧「/」构成标准梯形 */
+.slashEnd {
+  left: auto;
+  right: -5rpx;
+}
+
+/* 收尾斜线：贴在最后一格右端，略长（延伸到底线下方） */
+.trailingSlash {
+  left: auto;
+  right: -2rpx;
+  height: 34rpx;
+}
+
+/*
+ * 顶部短横线：左右等距断口（梯形居中对称），斜线立于缺口中
+ */
+.topRule {
+  display: block;
+  height: 2rpx;
+  margin: 0 13rpx 6rpx 13rpx;
+  background: #1a1a1a;
+}
+
+/* 数字行：紧跟斜线左对齐 */
+.numberRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8rpx;
+  height: 18rpx;
+  margin-bottom: 8rpx;
+  padding-left: 10rpx;
+}
+
+.number {
+  font-size: 22rpx;
+  line-height: 1;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1rpx;
+}
+
+/* 当前题右侧的实心菱形（旋转 45° 正方形）：缩放淡入淡出 */
+.dot {
+  width: 7rpx;
+  height: 7rpx;
+  background: #1a1a1a;
+  transform: rotate(45deg) scale(1);
+  flex-shrink: 0;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+
+  &.hidden {
+    transform: rotate(45deg) scale(0.3);
+  }
+}
+
+/*
+ * 下划线 = 内容卡片上边框的连续段：整格跨度（与相邻格相连），
+ * 当前题淡出 → 形成文件夹标签开口。
+ * 紧邻当前题的两侧格向内平移 16rpx 给梯形斜线让位（斜线底端距底线端头约 4rpx，不突出）。
+ */
+.bottomRule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2rpx;
+  background: #1a1a1a;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.pullRight {
+  transform: translateX(-16rpx);
+}
+
+.pullLeft {
+  transform: translateX(16rpx);
+}

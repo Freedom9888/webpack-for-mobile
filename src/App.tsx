@@ -64,6 +64,10 @@ const App: React.FC = () => {
           <Link to="/invest">{t('nav.invest', 'Invest')}</Link> |{' '}
           <Link to="/editor">{t('nav.editor', 'Editor')}</Link> |{' '}
           <Link to="/demo1">{t('nav.demo1', 'Demo 1')}</Link> |{' '}
+          <Link to="/profile">{t('nav.profile', 'Profile')}</Link> |{' '}
+          <Link to="/products">{t('nav.products', 'Products')}</Link> |{' '}
+          <Link to="/chat">{t('nav.chat', 'Chat')}</Link> |{' '}
+          <Link to="/quiz">{t('nav.quiz', 'Quiz')}</Link> |{' '}
           {isAuthenticated ? (
             <button onClick={handleLogout} className={styles.navLogoutButton}>
               {t('auth.logout')}

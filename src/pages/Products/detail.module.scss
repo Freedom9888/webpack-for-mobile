@@ -1,0 +1,451 @@
+/**
+ * 商品详情页样式。
+ * 尺寸依据设计稿实测（屏幕宽 226 设计px = 750rpx，故 1 设计px ≈ 3.32rpx）。
+ */
+
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  color: #1f2329;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei',
+    sans-serif;
+}
+
+.screen {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 750rpx;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* ---------------- 主图区（浅蓝背景） ---------------- */
+.gallery {
+  position: relative;
+  flex-shrink: 0;
+  /* 实测：图片区高约 853rpx */
+  height: 853rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e6f0fd;
+}
+
+.galleryArt {
+  width: 620rpx;
+  height: 620rpx;
+  display: block;
+}
+
+.backButton {
+  position: absolute;
+  top: 40rpx;
+  left: 32rpx;
+  width: 60rpx;
+  height: 60rpx;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  svg {
+    width: 44rpx;
+    height: 44rpx;
+    display: block;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+.galleryActions {
+  position: absolute;
+  top: 34rpx;
+  right: 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.roundButton {
+  width: 64rpx;
+  height: 64rpx;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s ease;
+
+  svg {
+    width: 34rpx;
+    height: 34rpx;
+    display: block;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+/* 右下角 1/6 指示器 */
+.galleryCounter {
+  position: absolute;
+  right: 26rpx;
+  bottom: 26rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+  background: rgba(60, 66, 74, 0.72);
+  color: #ffffff;
+  font-size: 24rpx;
+  line-height: 1.2;
+}
+
+/* ---------------- 内容区 ---------------- */
+.scrollArea {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #ffffff;
+}
+
+.content {
+  /* 实测：内容区左右内边距约 53rpx */
+  padding: 34rpx 32rpx 40rpx;
+  flex: 1;
+}
+
+.title {
+  margin: 0;
+  font-size: 50rpx;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #1f2329;
+}
+
+.variant {
+  margin: 16rpx 0 0;
+  font-size: 29rpx;
+  color: #6b7280;
+}
+
+/* 价格行 */
+.priceRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18rpx;
+  margin-top: 30rpx;
+}
+
+.price {
+  font-size: 50rpx;
+  font-weight: 700;
+  color: #e5432c;
+  line-height: 1.1;
+}
+
+.originalPrice {
+  font-size: 30rpx;
+  color: #9aa0a6;
+  text-decoration: line-through;
+}
+
+.promotion {
+  padding: 6rpx 14rpx;
+  border-radius: 8rpx;
+  background: #ffe9e6;
+  color: #e5432c;
+  font-size: 24rpx;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* 评分行 */
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-top: 26rpx;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+
+  svg {
+    width: 30rpx;
+    height: 30rpx;
+    display: block;
+  }
+}
+
+.ratingScore {
+  font-size: 29rpx;
+  font-weight: 600;
+  color: #1f2329;
+}
+
+.ratingCount {
+  font-size: 26rpx;
+  color: #8a9099;
+}
+
+/* 卖点 */
+.highlights {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+  margin: 30rpx 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlight {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  font-size: 25rpx;
+  color: #4a5058;
+
+  svg {
+    flex-shrink: 0;
+    width: 30rpx;
+    height: 30rpx;
+    display: block;
+  }
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* 选项区 */
+.optionBlock {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-top: 46rpx;
+
+  svg {
+    width: 30rpx;
+    height: 30rpx;
+    display: block;
+  }
+}
+
+.optionLabel {
+  font-size: 29rpx;
+  font-weight: 500;
+  color: #1f2329;
+}
+
+.colors {
+  display: flex;
+  align-items: center;
+  gap: 22rpx;
+}
+
+/* 颜色圆点：选中态为蓝色外环 */
+.colorDot {
+  width: 46rpx;
+  height: 46rpx;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: inset 0 0 0 2rpx #d7dbe2;
+  transition: box-shadow 0.15s ease;
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.colorDotActive {
+  box-shadow:
+    inset 0 0 0 2rpx #2e7cf6,
+    0 0 0 4rpx rgba(46, 124, 246, 0.18);
+}
+
+.colorFill {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  display: block;
+}
+
+/* 容量选项 */
+.storages {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-top: 24rpx;
+}
+
+.storageItem {
+  flex: 1;
+  height: 88rpx;
+  border: 2rpx solid #e4e7ec;
+  border-radius: 14rpx;
+  background: #f7f8fa;
+  font-size: 30rpx;
+  color: #4a5058;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background-color 0.15s ease;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.storageItemActive {
+  border-color: #2e7cf6;
+  background: #eef4ff;
+  color: #2e7cf6;
+  font-weight: 600;
+}
+
+/* ---------------- 底部操作栏 ---------------- */
+.bottomBar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 16rpx 32rpx calc(16rpx + env(safe-area-inset-bottom, 0));
+  background: #ffffff;
+  border-top: 1px solid #f0f1f3;
+}
+
+.cartButton {
+  flex-shrink: 0;
+  width: 72rpx;
+  height: 72rpx;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  svg {
+    width: 48rpx;
+    height: 48rpx;
+    display: block;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+.addToCart,
+.buyNow {
+  height: 88rpx;
+  border: none;
+  border-radius: 12rpx;
+  font-size: 31rpx;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s ease;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.addToCart {
+  flex: 1.05;
+  background: #e8f1ff;
+  color: #2e7cf6;
+}
+
+.buyNow {
+  flex: 1;
+  background: #2e7cf6;
+  color: #ffffff;
+}
+
+/* ---------------- 异常态 ---------------- */
+.missing {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32rpx;
+  padding: 0 48rpx;
+}
+
+.missingText {
+  margin: 0;
+  font-size: 30rpx;
+  color: #6b7280;
+  text-align: center;
+}
+
+.missingBtn {
+  height: 84rpx;
+  padding: 0 48rpx;
+  border: none;
+  border-radius: 12rpx;
+  background: #2e7cf6;
+  color: #ffffff;
+  font-size: 30rpx;
+  cursor: pointer;
+}
+
+/* ---------------- 轻提示 ---------------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 240rpx;
+  transform: translateX(-50%);
+  max-width: 560rpx;
+  padding: 18rpx 32rpx;
+  border-radius: 12rpx;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  font-size: 26rpx;
+  line-height: 1.4;
+  text-align: center;
+  z-index: 20;
+  pointer-events: none;
+}

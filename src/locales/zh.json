@@ -9,7 +9,145 @@
     "invest": "投资",
     "editor": "编辑器",
     "demo1": "示例1",
-    "login": "登录"
+    "login": "登录",
+    "profile": "我的",
+    "products": "商品",
+    "chat": "聊天",
+    "quiz": "风格诊断"
+  },
+  "tab": {
+    "home": "首页",
+    "discover": "发现",
+    "message": "消息",
+    "profile": "我的",
+    "ariaLabel": "底部导航"
+  },
+  "profile": {
+    "idLabel": "ID: {{id}}",
+    "guestName": "张小明",
+    "settings": "设置",
+    "menuAriaLabel": "功能列表",
+    "menu": {
+      "orders": "我的订单",
+      "coupons": "优惠券",
+      "favorites": "我的收藏",
+      "address": "收货地址",
+      "settings": "设置"
+    },
+    "comingSoon": "{{name}}：暂未开放",
+    "themeDark": "已切换为深色模式",
+    "themeLight": "已切换为浅色模式"
+  },
+  "messages": {
+    "title": "消息",
+    "placeholder": "暂无消息"
+  },
+  "shopTab": {
+    "home": "首页",
+    "category": "分类",
+    "cart": "购物车",
+    "mine": "我的"
+  },
+  "chat": {
+    "assistantName": "AI 助手",
+    "online": "在线",
+    "replyingFast": "秒回",
+    "back": "返回",
+    "more": "更多",
+    "moreHint": "更多功能暂未开放",
+    "inputPlaceholder": "请输入消息…",
+    "emoji": "表情",
+    "sticker": "贴纸",
+    "send": "发送",
+    "emojiHint": "表情功能暂未开放",
+    "stickerHint": "贴纸功能暂未开放",
+    "viewDetail": "查看详情",
+    "initialUserAsk": "帮我推荐一款适合旅行的背包",
+    "initialAiReply": "根据你的需求，我推荐以下几款：\n1. Osprey 小鹰 26L（轻量化，适合短途）\n   背负舒适 900克\n2. 迪卡侬 40L（性价比高，空间大）\n3. 北面 32L（耐用，适合多场景）",
+    "fallbackReply": "已收到你的消息：「{{text}}」。当前尚未接入 AI 服务，暂时无法给出智能回复。",
+    "card": {
+      "osprey": {
+        "name": "Osprey 小鹰 26L"
+      }
+    }
+  },
+  "product": {
+    "searchPlaceholder": "搜索商品、品牌",
+    "scan": "扫码",
+    "scanHint": "扫码功能暂未开放",
+    "categoryLabel": "商品分类",
+    "category": {
+      "recommend": "推荐",
+      "phone": "手机",
+      "computer": "电脑",
+      "digital": "数码",
+      "appliance": "家电"
+    },
+    "addToCart": "加入购物车",
+    "addedToCart": "已将「{{name}}」加入购物车",
+    "buyNow": "立即购买",
+    "buyNowHint": "即将购买「{{name}}」",
+    "cart": "购物车",
+    "cartEmpty": "购物车是空的",
+    "empty": "没有找到相关商品",
+    "notFound": "商品不存在或已下架",
+    "backToList": "返回商品列表",
+    "back": "返回",
+    "favorite": "收藏",
+    "favorited": "已收藏",
+    "unfavorited": "已取消收藏",
+    "share": "分享",
+    "shareHint": "分享功能暂未开放",
+    "galleryCounter": "{{current}}/{{total}}",
+    "discount": "直降{{amount}}",
+    "reviewCount": "（{{count}}人评价）",
+    "selectColor": "选择颜色",
+    "selectStorage": "选择容量",
+    "variant": {
+      "default": "蓝色",
+      "white": "白色",
+      "m2": "深空灰",
+      "black44": "黑色"
+    },
+    "color": {
+      "blue": "蓝色",
+      "dark": "黑色",
+      "steel": "钛金属色",
+      "white": "白色",
+      "silver": "银色",
+      "gray": "深空灰",
+      "black": "黑色",
+      "orange": "橙色"
+    },
+    "highlight": {
+      "chip": "A16芯片",
+      "camera": "超清双摄",
+      "screen": "6.1英寸屏幕",
+      "anc": "主动降噪",
+      "transparency": "自适应通透",
+      "chargingCase": "无线充电盒",
+      "m2": "M2芯片",
+      "screen13": "13.6英寸",
+      "battery": "长续航",
+      "spo2": "血氧监测",
+      "gps": "双频定位"
+    },
+    "iphone-15": {
+      "name": "iPhone 15",
+      "spec": "A16芯片 | 128GB"
+    },
+    "airpods-pro-2": {
+      "name": "AirPods Pro 2",
+      "spec": "主动降噪 | 续航更强"
+    },
+    "macbook-air": {
+      "name": "MacBook Air",
+      "spec": "M2芯片 | 13.6英寸"
+    },
+    "smart-watch": {
+      "name": "智能手表",
+      "spec": "运动健康 | 续航长"
+    }
   },
   "home": {
     "title": "首页",
@@ -25,10 +163,18 @@
     "retry": "重试"
   },
   "auth": {
-    "title": "欢迎登录",
-    "subtitle": "请使用手机号登录或注册",
+    "title": "欢迎",
+    "subtitle": "登录或创建账号",
+    "heroSubtitle": "开始您的购物之旅",
     "login": "登录",
     "register": "注册",
+    "back": "返回",
+    "backToLogin": "返回登录",
+    "processing": "处理中...",
+    "continueWith": "使用 {{provider}} 继续",
+    "registerWithEmail": "使用邮箱或手机号注册",
+    "account": "账号",
+    "accountPlaceholder": "邮箱或手机号",
     "phone": "手机号",
     "phonePlaceholder": "请输入手机号",
     "smsCode": "验证码",
@@ -38,11 +184,16 @@
     "passwordPlaceholder": "请输入密码",
     "confirmPassword": "确认密码",
     "confirmPasswordPlaceholder": "请再次输入密码",
-    "or": "或者",
+    "or": "或",
     "socialLogin": "第三方登录",
-    "about": "关于我们",
+    "aboutTAO": "关于 TAO",
+    "paymentMethods": "支付方式",
+    "taoNote": "TAO 笔记",
+    "taoWiki": "TAO 百科",
     "terms": "用户协议",
     "privacy": "隐私政策",
+    "hasAccount": "已有账号？",
+    "noAccount": "没有账号？",
     "error": {
       "phoneRequired": "请输入手机号",
       "passwordRequired": "请输入密码",
@@ -51,9 +202,88 @@
       "loginFailed": "登录失败，请重试",
       "registerFailed": "注册失败，请重试",
       "smsFailed": "验证码发送失败，请重试",
-      "socialLoginFailed": "{{provider}} 登录失败，请重试"
+      "socialLoginFailed": "{{provider}} 登录失败",
+      "oauthNotConfigured": "{{provider}} OAuth 尚未配置",
+      "oauthFailed": "认证失败，请重试"
     },
     "loading": "处理中...",
     "logout": "退出登录"
+  },
+  "quiz": {
+    "back": "返回",
+    "share": "分享",
+    "title": "风格诊断",
+    "ribbonTop": "你的穿搭是",
+    "ribbonBottom": "什么甜点？",
+    "prev": "上一题",
+    "next": "下一题",
+    "submit": "提交",
+    "submitResult": "已提交：共 {{total}} 题，已完成 {{answered}} 题",
+    "q1": {
+      "title": "手掌的特征：",
+      "opt": {
+        "a": "手掌较厚，指关节不明显，属于肌肉型。",
+        "b": "手掌较薄，关节收敛，轮廓呈曲线形。",
+        "c": "骨感明显，关节突出。手部不厚重，给人利落印象。"
+      }
+    },
+    "q2": {
+      "title": "锁骨与肩部线条：",
+      "opt": {
+        "a": "锁骨不明显，肩线平直，属于肌肉型体型。",
+        "b": "锁骨自然可见，线条圆润柔和。",
+        "c": "锁骨突出，肩线分明。骨感强烈。"
+      }
+    },
+    "q3": {
+      "title": "身体线条与体型平衡：",
+      "opt": {
+        "a": "身体线条平直，轮廓利落，腰线不明显。",
+        "b": "身体线条呈曲线，腰部收束的沙漏型轮廓。",
+        "c": "身体线条自然，勾勒出柔和的曲线。"
+      }
+    },
+    "q4": {
+      "title": "初印象（风格）：",
+      "opt": {
+        "a": "时尚有型，气质利落，存在感是魅力所在。",
+        "b": "氛围温柔，沉稳自然，能感受到自然体之美。",
+        "c": "氛围放松，重视自我，散发自然体的魅力。"
+      }
+    },
+    "q5": {
+      "title": "眼睛的颜色：",
+      "opt": {
+        "a": "明亮的棕色眼睛，像含着光一样有神采。",
+        "b": "琥珀系柔和的棕色，自然渐层是其特征。",
+        "c": "时髦的棕色，自然渐层融入其中，显得高级。",
+        "d": "深邃的黑茶色，渐层清晰分明。"
+      }
+    },
+    "q6": {
+      "title": "手掌的特征：",
+      "opt": {
+        "a": "手掌较厚，指关节不明显，属于肌肉型。",
+        "b": "手掌较薄，关节收敛，轮廓呈曲线形。",
+        "c": "骨感明显，关节突出。手部不厚重，给人利落印象。"
+      }
+    },
+    "q7": {
+      "title": "锁骨与肩部线条：",
+      "opt": {
+        "a": "锁骨不明显，肩线平直，属于肌肉型体型。",
+        "b": "锁骨自然可见，线条圆润柔和。",
+        "c": "锁骨突出，肩线分明。骨感强烈。"
+      }
+    },
+    "q8": {
+      "title": "自然光下的肤色：",
+      "opt": {
+        "a": "偏明亮黄调的肌肤类型。",
+        "b": "有透明感的偏冷调肌肤类型。",
+        "c": "沉稳的橄榄色系肌肤。",
+        "d": "冷调明显、白皙更突出的肌肤类型。"
+      }
+    }
   }
 }

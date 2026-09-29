@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useCallback, type ReactNode } from 'react'
-import { authApi, type AuthUser, type LoginParams, type RegisterParams } from '@/api/auth'
+import {
+  authApi,
+  type AuthUser,
+  type LoginParams,
+  type RegisterParams,
+  type OAuthCallbackParams
+} from '@/api/auth'
 import { AuthContext } from './context'
+import type { OAuthProvider } from '@/config/oauth'
 
 export interface AuthContextType {
   user: AuthUser | null
@@ -8,7 +15,8 @@ export interface AuthContextType {
   isAuthenticated: boolean
   login: (params: LoginParams) => Promise<void>
   register: (params: RegisterParams) => Promise<void>
-  socialLogin: (provider: string) => Promise<void>
+  socialLogin: (provider: OAuthProvider) => void
+  handleOAuthCallback: (params: OAuthCallbackParams) => Promise<void>
   logout: () => void
   requestSmsCode: (phone: string) => Promise<void>
 }
@@ -53,8 +61,22 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setUser(result.user)
   }, [])
 
-  const socialLogin = useCallback(async (provider: string) => {
-    const result = await authApi.socialLogin(provider)
+  const socialLogin = useCallback((provider: OAuthProvider) => {
+    const url = authApi.getOAuthUrl(provider)
+    if (!url) {
+      throw new Error(`OAuth not configured for ${provider}`)
+    }
+    sessionStorage.setItem('oauth_provider', provider)
+    const urlObj = new URL(url)
+    const state = urlObj.searchParams.get('state')
+    if (state) {
+      sessionStorage.setItem('oauth_state', state)
+    }
+    window.location.href = url
+  }, [])
+
+  const handleOAuthCallback = useCallback(async (params: OAuthCallbackParams) => {
+    const result = await authApi.exchangeOAuthCode(params)
     setToken(result.token)
     setUser(result.user)
   }, [])
@@ -77,6 +99,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         login,
         register,
         socialLogin,
+        handleOAuthCallback,
         logout,
         requestSmsCode
       }}

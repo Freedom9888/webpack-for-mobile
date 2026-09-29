@@ -9,7 +9,145 @@
     "invest": "Invest",
     "editor": "Editor",
     "demo1": "Demo1",
-    "login": "Login"
+    "login": "Login",
+    "profile": "Profile",
+    "products": "Products",
+    "chat": "Chat",
+    "quiz": "Style Quiz"
+  },
+  "tab": {
+    "home": "Home",
+    "discover": "Discover",
+    "message": "Messages",
+    "profile": "Profile",
+    "ariaLabel": "Bottom navigation"
+  },
+  "profile": {
+    "idLabel": "ID: {{id}}",
+    "guestName": "Zhang Xiaoming",
+    "settings": "Settings",
+    "menuAriaLabel": "Menu list",
+    "menu": {
+      "orders": "My Orders",
+      "coupons": "Coupons",
+      "favorites": "My Favorites",
+      "address": "Shipping Address",
+      "settings": "Settings"
+    },
+    "comingSoon": "{{name}}: coming soon",
+    "themeDark": "Switched to dark mode",
+    "themeLight": "Switched to light mode"
+  },
+  "messages": {
+    "title": "Messages",
+    "placeholder": "No messages yet"
+  },
+  "shopTab": {
+    "home": "Home",
+    "category": "Categories",
+    "cart": "Cart",
+    "mine": "Mine"
+  },
+  "chat": {
+    "assistantName": "AI Assistant",
+    "online": "Online",
+    "replyingFast": "Replies fast",
+    "back": "Back",
+    "more": "More",
+    "moreHint": "More options are not available yet",
+    "inputPlaceholder": "Type a message…",
+    "emoji": "Emoji",
+    "sticker": "Sticker",
+    "send": "Send",
+    "emojiHint": "Emoji is not available yet",
+    "stickerHint": "Stickers are not available yet",
+    "viewDetail": "View Details",
+    "initialUserAsk": "Recommend a backpack for traveling",
+    "initialAiReply": "Based on your needs, here are my picks:\n1. Osprey Talon 26L (lightweight, great for short trips)\n   Comfortable carry, 900g\n2. Decathlon 40L (great value, roomy)\n3. The North Face 32L (durable, all-round)",
+    "fallbackReply": "Got your message: \"{{text}}\". The AI service is not connected yet, so I cannot give a smart reply for now.",
+    "card": {
+      "osprey": {
+        "name": "Osprey Talon 26L"
+      }
+    }
+  },
+  "product": {
+    "searchPlaceholder": "Search products, brands",
+    "scan": "Scan",
+    "scanHint": "Scan is not available yet",
+    "categoryLabel": "Product categories",
+    "category": {
+      "recommend": "For You",
+      "phone": "Phones",
+      "computer": "Computers",
+      "digital": "Digital",
+      "appliance": "Appliances"
+    },
+    "addToCart": "Add to Cart",
+    "addedToCart": "\"{{name}}\" added to cart",
+    "buyNow": "Buy Now",
+    "buyNowHint": "Buying \"{{name}}\"",
+    "cart": "Cart",
+    "cartEmpty": "Your cart is empty",
+    "empty": "No matching products",
+    "notFound": "Product not found or unavailable",
+    "backToList": "Back to product list",
+    "back": "Back",
+    "favorite": "Favorite",
+    "favorited": "Added to favorites",
+    "unfavorited": "Removed from favorites",
+    "share": "Share",
+    "shareHint": "Share is not available yet",
+    "galleryCounter": "{{current}}/{{total}}",
+    "discount": "Save {{amount}}",
+    "reviewCount": "({{count}} reviews)",
+    "selectColor": "Select Color",
+    "selectStorage": "Select Storage",
+    "variant": {
+      "default": "Blue",
+      "white": "White",
+      "m2": "Space Gray",
+      "black44": "Black"
+    },
+    "color": {
+      "blue": "Blue",
+      "dark": "Black",
+      "steel": "Titanium",
+      "white": "White",
+      "silver": "Silver",
+      "gray": "Space Gray",
+      "black": "Black",
+      "orange": "Orange"
+    },
+    "highlight": {
+      "chip": "A16 chip",
+      "camera": "Dual camera",
+      "screen": "6.1-inch display",
+      "anc": "Active Noise Cancelling",
+      "transparency": "Adaptive Transparency",
+      "chargingCase": "Wireless charging case",
+      "m2": "M2 chip",
+      "screen13": "13.6-inch",
+      "battery": "Long battery life",
+      "spo2": "Blood oxygen",
+      "gps": "Dual-band GPS"
+    },
+    "iphone-15": {
+      "name": "iPhone 15",
+      "spec": "A16 chip | 128GB"
+    },
+    "airpods-pro-2": {
+      "name": "AirPods Pro 2",
+      "spec": "Active Noise Cancelling | Longer battery"
+    },
+    "macbook-air": {
+      "name": "MacBook Air",
+      "spec": "M2 chip | 13.6-inch"
+    },
+    "smart-watch": {
+      "name": "Smart Watch",
+      "spec": "Fitness & health | Long battery"
+    }
   },
   "home": {
     "title": "Home Page",
@@ -26,23 +164,36 @@
   },
   "auth": {
     "title": "Welcome",
-    "subtitle": "Sign in or create an account with your phone number",
+    "subtitle": "Sign in or create an account",
+    "heroSubtitle": "Start your shopping journey",
     "login": "Sign In",
-    "register": "Sign Up",
+    "register": "Create Account",
+    "back": "Back",
+    "backToLogin": "Back to Sign In",
+    "processing": "Processing...",
+    "continueWith": "Continue with {{provider}}",
+    "registerWithEmail": "Register with email or phone number",
+    "account": "Account",
+    "accountPlaceholder": "Email or phone number",
     "phone": "Phone Number",
-    "phonePlaceholder": "Enter your phone number",
+    "phonePlaceholder": "Enter phone number",
     "smsCode": "Verification Code",
     "smsCodePlaceholder": "Enter verification code",
     "getSmsCode": "Get Code",
     "password": "Password",
-    "passwordPlaceholder": "Enter your password",
+    "passwordPlaceholder": "Enter password",
     "confirmPassword": "Confirm Password",
-    "confirmPasswordPlaceholder": "Re-enter your password",
+    "confirmPasswordPlaceholder": "Re-enter password",
     "or": "or",
     "socialLogin": "Social Login",
-    "about": "About Us",
+    "aboutTAO": "About TAO",
+    "paymentMethods": "Payment Methods",
+    "taoNote": "TAO Note",
+    "taoWiki": "TAO Wiki",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
+    "hasAccount": "Already have an account?",
+    "noAccount": "Don't have an account?",
     "error": {
       "phoneRequired": "Please enter your phone number",
       "passwordRequired": "Please enter your password",
@@ -50,10 +201,89 @@
       "passwordMismatch": "Passwords do not match",
       "loginFailed": "Login failed, please try again",
       "registerFailed": "Registration failed, please try again",
-      "smsFailed": "Failed to send verification code, please try again",
-      "socialLoginFailed": "{{provider}} login failed, please try again"
+      "smsFailed": "Failed to send verification code",
+      "socialLoginFailed": "{{provider}} login failed",
+      "oauthNotConfigured": "{{provider}} OAuth is not configured",
+      "oauthFailed": "Authentication failed, please try again"
     },
     "loading": "Processing...",
     "logout": "Logout"
+  },
+  "quiz": {
+    "back": "Back",
+    "share": "Share",
+    "title": "Style Diagnosis",
+    "ribbonTop": "Your outfit is",
+    "ribbonBottom": "which dessert?",
+    "prev": "Previous",
+    "next": "Next Question",
+    "submit": "Submit",
+    "submitResult": "Submitted: {{answered}} of {{total}} questions answered",
+    "q1": {
+      "title": "Palm characteristics:",
+      "opt": {
+        "a": "A thick palm with subtle knuckles — a muscular type.",
+        "b": "A slim palm with restrained joints and a curvy outline.",
+        "c": "Bony with prominent knuckles. Thin and sharp-looking."
+      }
+    },
+    "q2": {
+      "title": "Collarbone and shoulder line:",
+      "opt": {
+        "a": "Collarbones not prominent, shoulders straight — a muscular build.",
+        "b": "Collarbones naturally visible with soft, rounded lines.",
+        "c": "Prominent collarbones and defined shoulders. Strongly bony."
+      }
+    },
+    "q3": {
+      "title": "Body line and balance:",
+      "opt": {
+        "a": "A straight body line with a clear outline and no visible waist.",
+        "b": "A curvy body line with an hourglass waist.",
+        "c": "A natural body line drawing smooth curves."
+      }
+    },
+    "q4": {
+      "title": "First impression (style):",
+      "opt": {
+        "a": "Stylish and sharp — a commanding presence is the appeal.",
+        "b": "A gentle mood, calm and naturally beautiful.",
+        "c": "A relaxed mood that values being yourself."
+      }
+    },
+    "q5": {
+      "title": "Eye color:",
+      "opt": {
+        "a": "Bright brown eyes with a light-catching sparkle.",
+        "b": "Soft amber brown with natural gradation.",
+        "c": "Chic brown with natural gradation melting in — a refined look.",
+        "d": "Deep black-brown with clear gradation."
+      }
+    },
+    "q6": {
+      "title": "Palm characteristics:",
+      "opt": {
+        "a": "A thick palm with subtle knuckles — a muscular type.",
+        "b": "A slim palm with restrained joints and a curvy outline.",
+        "c": "Bony with prominent knuckles. Thin and sharp-looking."
+      }
+    },
+    "q7": {
+      "title": "Collarbone and shoulder line:",
+      "opt": {
+        "a": "Collarbones not prominent, shoulders straight — a muscular build.",
+        "b": "Collarbones naturally visible with soft, rounded lines.",
+        "c": "Prominent collarbones and defined shoulders. Strongly bony."
+      }
+    },
+    "q8": {
+      "title": "Skin tone in natural light:",
+      "opt": {
+        "a": "A bright, warm yellow-toned skin type.",
+        "b": "A clear, cool blue-toned skin type.",
+        "c": "A calm olive-toned skin.",
+        "d": "A strongly cool tone with striking fairness."
+      }
+    }
   }
 }

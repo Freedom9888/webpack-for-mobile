@@ -1,0 +1,289 @@
+{
+  "app": {
+    "title": "企業モバイル",
+    "hello": "こんにちは、React！"
+  },
+  "nav": {
+    "home": "ホーム",
+    "about": "について",
+    "invest": "投資",
+    "editor": "エディタ",
+    "demo1": "デモ1",
+    "login": "ログイン",
+    "profile": "マイページ",
+    "products": "商品",
+    "chat": "チャット",
+    "quiz": "スタイル診断"
+  },
+  "tab": {
+    "home": "ホーム",
+    "discover": "見つける",
+    "message": "メッセージ",
+    "profile": "マイページ",
+    "ariaLabel": "ボトムナビゲーション"
+  },
+  "profile": {
+    "idLabel": "ID: {{id}}",
+    "guestName": "張小明",
+    "settings": "設定",
+    "menuAriaLabel": "メニュー一覧",
+    "menu": {
+      "orders": "注文履歴",
+      "coupons": "クーポン",
+      "favorites": "お気に入り",
+      "address": "お届け先住所",
+      "settings": "設定"
+    },
+    "comingSoon": "{{name}}：準備中です",
+    "themeDark": "ダークモードに切り替えました",
+    "themeLight": "ライトモードに切り替えました"
+  },
+  "messages": {
+    "title": "メッセージ",
+    "placeholder": "メッセージはありません"
+  },
+  "shopTab": {
+    "home": "ホーム",
+    "category": "カテゴリ",
+    "cart": "カート",
+    "mine": "マイページ"
+  },
+  "chat": {
+    "assistantName": "AIアシスタント",
+    "online": "オンライン",
+    "replyingFast": "すぐ返信",
+    "back": "戻る",
+    "more": "その他",
+    "moreHint": "その他の機能は準備中です",
+    "inputPlaceholder": "メッセージを入力…",
+    "emoji": "絵文字",
+    "sticker": "スタンプ",
+    "send": "送信",
+    "emojiHint": "絵文字機能は準備中です",
+    "stickerHint": "スタンプ機能は準備中です",
+    "viewDetail": "詳細を見る",
+    "initialUserAsk": "旅行に合うバックパックを教えて",
+    "initialAiReply": "ご要望に合わせて、以下をおすすめします：\n1. Osprey Talon 26L（軽量、短距離に最適）\n   背負い心地が良く 900g\n2. デカトロン 40L（コスパが高く、容量十分）\n3. ノースフェイス 32L（丈夫で多用途）",
+    "fallbackReply": "メッセージを受け取りました：「{{text}}」。現在AIサービスに未接続のため、スマートな返信はできません。",
+    "card": {
+      "osprey": {
+        "name": "Osprey Talon 26L"
+      }
+    }
+  },
+  "product": {
+    "searchPlaceholder": "商品・ブランドを検索",
+    "scan": "スキャン",
+    "scanHint": "スキャン機能は準備中です",
+    "categoryLabel": "商品カテゴリ",
+    "category": {
+      "recommend": "おすすめ",
+      "phone": "スマホ",
+      "computer": "パソコン",
+      "digital": "デジタル",
+      "appliance": "家電"
+    },
+    "addToCart": "カートに追加",
+    "addedToCart": "「{{name}}」をカートに追加しました",
+    "buyNow": "今すぐ購入",
+    "buyNowHint": "「{{name}}」を購入します",
+    "cart": "カート",
+    "cartEmpty": "カートは空です",
+    "empty": "該当する商品がありません",
+    "notFound": "商品が存在しないか販売終了しました",
+    "backToList": "商品一覧に戻る",
+    "back": "戻る",
+    "favorite": "お気に入り",
+    "favorited": "お気に入りに追加しました",
+    "unfavorited": "お気に入りを解除しました",
+    "share": "共有",
+    "shareHint": "共有機能は準備中です",
+    "galleryCounter": "{{current}}/{{total}}",
+    "discount": "{{amount}}値下げ",
+    "reviewCount": "（{{count}}件のレビュー）",
+    "selectColor": "カラーを選択",
+    "selectStorage": "容量を選択",
+    "variant": {
+      "default": "ブルー",
+      "white": "ホワイト",
+      "m2": "スペースグレイ",
+      "black44": "ブラック"
+    },
+    "color": {
+      "blue": "ブルー",
+      "dark": "ブラック",
+      "steel": "チタニウム",
+      "white": "ホワイト",
+      "silver": "シルバー",
+      "gray": "スペースグレイ",
+      "black": "ブラック",
+      "orange": "オレンジ"
+    },
+    "highlight": {
+      "chip": "A16チップ",
+      "camera": "デュアルカメラ",
+      "screen": "6.1インチ画面",
+      "anc": "アクティブノイズキャンセリング",
+      "transparency": "適応型トランスペアレンシー",
+      "chargingCase": "ワイヤレス充電ケース",
+      "m2": "M2チップ",
+      "screen13": "13.6インチ",
+      "battery": "長時間バッテリー",
+      "spo2": "血中酸素測定",
+      "gps": "デュアルバンドGPS"
+    },
+    "iphone-15": {
+      "name": "iPhone 15",
+      "spec": "A16チップ | 128GB"
+    },
+    "airpods-pro-2": {
+      "name": "AirPods Pro 2",
+      "spec": "ノイズキャンセリング | 長時間駆動"
+    },
+    "macbook-air": {
+      "name": "MacBook Air",
+      "spec": "M2チップ | 13.6インチ"
+    },
+    "smart-watch": {
+      "name": "スマートウォッチ",
+      "spec": "運動・健康 | 長時間駆動"
+    }
+  },
+  "home": {
+    "title": "ホーム",
+    "description": "ホーム画面の内容です。"
+  },
+  "about": {
+    "title": "について",
+    "description": "このページについての説明です。"
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました",
+    "retry": "再試行"
+  },
+  "auth": {
+    "title": "ようこそ",
+    "subtitle": "電話番号でログインまたは新規登録",
+    "heroSubtitle": "ショッピングを始めよう",
+    "login": "ログイン",
+    "register": "新規登録",
+    "back": "戻る",
+    "backToLogin": "ログインに戻る",
+    "processing": "処理中...",
+    "continueWith": "{{provider}}で続ける",
+    "registerWithEmail": "メールアドレスまたは電話番号で登録する",
+    "account": "アカウント",
+    "accountPlaceholder": "メールアドレスまたは電話番号",
+    "phone": "電話番号",
+    "phonePlaceholder": "電話番号を入力",
+    "smsCode": "認証コード",
+    "smsCodePlaceholder": "認証コードを入力",
+    "getSmsCode": "認証コード取得",
+    "password": "パスワード",
+    "passwordPlaceholder": "パスワードを入力",
+    "confirmPassword": "パスワード確認",
+    "confirmPasswordPlaceholder": "パスワードを再入力",
+    "or": "または",
+    "socialLogin": "ソーシャルログイン",
+    "aboutTAO": "TAOについて",
+    "paymentMethods": "お支払い方法",
+    "taoNote": "TAOノート",
+    "taoWiki": "TAOウィキ",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "hasAccount": "アカウントをお持ちの方",
+    "noAccount": "アカウントをお持ちでない方",
+    "error": {
+      "phoneRequired": "電話番号を入力してください",
+      "passwordRequired": "パスワードを入力してください",
+      "smsCodeRequired": "認証コードを入力してください",
+      "passwordMismatch": "パスワードが一致しません",
+      "loginFailed": "ログインに失敗しました。もう一度お試しください",
+      "registerFailed": "登録に失敗しました。もう一度お試しください",
+      "smsFailed": "認証コードの送信に失敗しました",
+      "socialLoginFailed": "{{provider}}ログインに失敗しました",
+      "oauthNotConfigured": "{{provider}}のOAuth設定が完了していません",
+      "oauthFailed": "認証に失敗しました。もう一度お試しください"
+    },
+    "loading": "処理中...",
+    "logout": "ログアウト"
+  },
+  "quiz": {
+    "back": "戻る",
+    "share": "共有",
+    "title": "スタイル診断",
+    "ribbonTop": "あなたのコーデは",
+    "ribbonBottom": "何のスイーツ",
+    "prev": "前の質問",
+    "next": "次の質問",
+    "submit": "提出",
+    "submitResult": "提出しました：全{{total}}問中{{answered}}問に回答済み",
+    "q1": {
+      "title": "手のひらの特徴：",
+      "opt": {
+        "a": "手のひらが厚く、指の関節が目立たない筋肉質なタイプ。",
+        "b": "手のひらは薄く、関節が控えめで曲線的な形状。",
+        "c": "骨感があり、関節が目立つ。手に厚みがなくシャープな印象。"
+      }
+    },
+    "q2": {
+      "title": "鎖骨と肩周りのライン：",
+      "opt": {
+        "a": "鎖骨が目立たず、肩は直線的で、筋肉質な体型。",
+        "b": "鎖骨が自然に見え、丸みのある柔らかいライン。",
+        "c": "鎖骨が目立つ、肩のラインがはっきり見える。骨感が強い印象。"
+      }
+    },
+    "q3": {
+      "title": "ボディーラインと体のバランス：",
+      "opt": {
+        "a": "直線的なボディーラインで、輪郭がはっきり、くびれが目立たない。",
+        "b": "ボディーラインが曲線的で、ウエストのくびれが際立つシルエット。",
+        "c": "ボディーラインが自然で、なめらかな曲線を描いている。"
+      }
+    },
+    "q4": {
+      "title": "初印象（スタイル）：",
+      "opt": {
+        "a": "おしゃれでスタイリッシュ、堂々とした存在感が魅力。",
+        "b": "雰囲気が優しくて、穏やかで自然体の美しさが感じられる。",
+        "c": "リラックスした雰囲気で、自分らしさを大切にする自然体の魅力。"
+      }
+    },
+    "q5": {
+      "title": "瞳の色：",
+      "opt": {
+        "a": "明るいブラウンの瞳で、光を含んだようなきらめきがある。",
+        "b": "アンバー系のやわらかいブラウンで、自然なグラデーションが特徴。",
+        "c": "シックなブラウンに自然なグラデーションが溶け込む上品な印象。",
+        "d": "深みのある黒茶に明瞭なグラデーション。"
+      }
+    },
+    "q6": {
+      "title": "手のひらの特徴：",
+      "opt": {
+        "a": "手のひらが厚く、指の関節が目立たない筋肉質なタイプ。",
+        "b": "手のひらは薄く、関節が控えめで曲線的な形状。",
+        "c": "骨感があり、関節が目立つ。手に厚みがなくシャープな印象。"
+      }
+    },
+    "q7": {
+      "title": "鎖骨と肩周りのライン：",
+      "opt": {
+        "a": "鎖骨が目立たず、肩は直線的で、筋肉質な体型。",
+        "b": "鎖骨が自然に見え、丸みのある柔らかいライン。",
+        "c": "鎖骨が目立つ、肩のラインがはっきり見える。骨感が強い印象。"
+      }
+    },
+    "q8": {
+      "title": "自然光環境にある肌色：",
+      "opt": {
+        "a": "明るめの黄み肌タイプ。",
+        "b": "透明感のある青み肌タイプ。",
+        "c": "落ち着いたオリーブ系の肌。",
+        "d": "青みが強く白さ際立つ肌タイプ。"
+      }
+    }
+  }
+}

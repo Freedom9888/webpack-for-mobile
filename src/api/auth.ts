@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { buildOAuthUrl, type OAuthProvider } from '@/config/oauth'
+
 export interface AuthUser {
   id: string
   phone: string
   name: string
   avatar?: string
+  email?: string
 }
 
 export interface LoginResult {
@@ -21,46 +25,30 @@ export interface LoginParams {
   password: string
 }
 
-function mockDelay<T>(data: T, ms = 800): Promise<T> {
-  return new Promise(resolve => setTimeout(() => resolve(data), ms))
+export interface OAuthCallbackParams {
+  code: string
+  state: string
+  provider: OAuthProvider
 }
 
 export const authApi = {
-  login: (params: LoginParams): Promise<LoginResult> => {
-    return mockDelay({
-      token: 'mock-jwt-token-' + Date.now(),
-      user: {
-        id: '1',
-        phone: params.phone,
-        name: '用户' + params.phone.slice(-4)
-      }
-    })
+  login: (_params: LoginParams): Promise<LoginResult> => {
+    throw new Error('Backend API not configured: POST /api/auth/login')
   },
 
-  register: (params: RegisterParams): Promise<LoginResult> => {
-    return mockDelay({
-      token: 'mock-jwt-token-' + Date.now(),
-      user: {
-        id: '2',
-        phone: params.phone,
-        name: '用户' + params.phone.slice(-4)
-      }
-    })
+  register: (_params: RegisterParams): Promise<LoginResult> => {
+    throw new Error('Backend API not configured: POST /api/auth/register')
   },
 
-  requestSmsCode: (phone: string): Promise<{ message: string }> => {
-    return mockDelay({ message: '验证码已发送到 ' + phone })
+  requestSmsCode: (_phone: string): Promise<{ message: string }> => {
+    throw new Error('Backend API not configured: POST /api/auth/sms')
   },
 
-  socialLogin: (provider: string): Promise<LoginResult> => {
-    return mockDelay({
-      token: 'mock-jwt-token-' + provider + '-' + Date.now(),
-      user: {
-        id: '3',
-        phone: '',
-        name: provider + '用户',
-        avatar: undefined
-      }
-    })
+  getOAuthUrl(provider: OAuthProvider): string | null {
+    return buildOAuthUrl(provider)
+  },
+
+  exchangeOAuthCode: (_params: OAuthCallbackParams): Promise<LoginResult> => {
+    throw new Error('Backend API not configured: POST /api/auth/oauth/callback')
   }
 }
