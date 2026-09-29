@@ -49,7 +49,7 @@ const DiagnosticTabs: React.FC<DiagnosticTabsProps> = ({ total = 8, current, onS
           styles.bottomRule,
           isCurrent && styles.hidden,
           pullRight && styles.pullRight,
-          pullLeft && styles.pullLeft,
+          pullLeft && styles.pullLeft
         ]
           .filter(Boolean)
           .join(' ')
