@@ -40,17 +40,20 @@
   .share { position:absolute; right:20px; top:50%; transform:translateY(-50%); }
   /* ---------- card ---------- */
 
-  /* 进度 tab：/NN 骑在卡片顶边框上，斜线居数字前，末尾反斜线，当前题带 ● */
+  /* 进度 tab：每格 = 粗斜线(菱形) + 顶部短横 + 数字，骑在卡片顶边框上形成梯形 */
   .steps {
     position:absolute; bottom:100%; left:0; right:0; margin-bottom:-1px;
     display:flex; justify-content:center; align-items:flex-end; pointer-events:none;
   }
-  .step { display:flex; align-items:flex-end; margin:0 1.5px; }
-  .step .sl { font-style:normal; font-size:21px; line-height:1; margin-bottom:-4px; }
-  .step .nm { font-style:normal; font-size:15px; font-weight:700; line-height:1; padding-bottom:6px; margin:0 1px; }
-  .step .dt { width:7px; height:7px; border-radius:50%; background:#1c1c1c; margin:0 1px 8px 3px; }
+  .step { display:flex; align-items:flex-end; margin:0; }
+  .step .sl { width:4px; height:22px; background:#1c1c1c; transform:skewX(-20deg); margin:0 1px -6px 0; flex:none; }
+  .step .sl.r { transform:skewX(20deg); margin:0 0 -6px 2px; }
+  .step .tcell { display:flex; flex-direction:column; align-items:stretch; }
+  .step .ol { height:2px; background:#1c1c1c; width:32px; margin-bottom:5px; }
+  .step .nm { font-size:14px; font-weight:700; line-height:1; padding-bottom:9px; text-align:center; font-style:normal; }
+  .step .dt { width:7px; height:7px; border-radius:50%; background:#1c1c1c; margin:0 2px 11px 4px; flex:none; }
   .card {
-    margin:16px 10px 0; border:1.6px solid #1c1c1c; border-radius:3px;
+    margin:42px 10px 0; border:1.6px solid #1c1c1c; border-radius:3px;
     background:#fff; position:relative; padding:20px 16px 30px; flex-shrink:0;
   }
   .steps { position:absolute; top:-14px; left:0; right:0; text-align:center; }
@@ -122,7 +125,7 @@
       <span class="share"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v8h14v-8"/></svg></span>
     </div>
     <div class="card">
-      <div class="steps"><span class="step"><i class="sl">/</i><b class="nm">01</b></span><span class="step"><i class="sl">/</i><b class="nm">02</b></span><span class="step"><i class="sl">/</i><b class="nm">03</b></span><span class="step"><i class="sl">/</i><b class="nm">04</b></span><span class="step"><i class="sl">/</i><b class="nm">05</b><i class="dt"></i></span><span class="step"><i class="sl">/</i><b class="nm">06</b></span><span class="step"><i class="sl">/</i><b class="nm">07</b></span><span class="step"><i class="sl">/</i><b class="nm">08</b><i class="sl">\</i></span></div>
+      <div class="steps"><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">01</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">02</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">03</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">04</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">05</b></span><i class="dt"></i></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">06</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">07</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">08</b></span><i class="sl r"></i></span></div>
       <div class="ribbon-wrap"><div class="ribbon"><span class="r1">あなたのコーデは</span><span class="fold"></span><span class="r2">何のスイーツ</span></div></div>
       <div class="qtitle">瞳の色：</div>
       <div class="rule"></div>
@@ -159,7 +162,7 @@
       <span class="share"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v8h14v-8"/></svg></span>
     </div>
     <div class="card">
-      <div class="steps"><span class="step"><i class="sl">/</i><b class="nm">01</b></span><span class="step"><i class="sl">/</i><b class="nm">02</b></span><span class="step"><i class="sl">/</i><b class="nm">03</b></span><span class="step"><i class="sl">/</i><b class="nm">04</b></span><span class="step"><i class="sl">/</i><b class="nm">05</b></span><span class="step"><i class="sl">/</i><b class="nm">06</b></span><span class="step"><i class="sl">/</i><b class="nm">07</b></span><span class="step"><i class="sl">/</i><b class="nm">08</b><i class="dt"></i><i class="sl">\</i></span></div>
+      <div class="steps"><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">01</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">02</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">03</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">04</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">05</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">06</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">07</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">08</b></span><i class="dt"></i><i class="sl r"></i></span></div>
       <div class="ribbon-wrap"><div class="ribbon"><span class="r1">あなたのコーデは</span><span class="fold"></span><span class="r2">何のスイーツ</span></div></div>
       <div class="qtitle">自然光環境にある肌色：</div>
       <div class="rule"></div>
@@ -196,7 +199,7 @@
       <span class="share"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v8h14v-8"/></svg></span>
     </div>
     <div class="card">
-      <div class="steps"><span class="step"><i class="sl">/</i><b class="nm">01</b><i class="dt"></i></span><span class="step"><i class="sl">/</i><b class="nm">02</b></span><span class="step"><i class="sl">/</i><b class="nm">03</b></span><span class="step"><i class="sl">/</i><b class="nm">04</b></span><span class="step"><i class="sl">/</i><b class="nm">05</b></span><span class="step"><i class="sl">/</i><b class="nm">06</b></span><span class="step"><i class="sl">/</i><b class="nm">07</b></span><span class="step"><i class="sl">/</i><b class="nm">08</b><i class="sl">\</i></span></div>
+      <div class="steps"><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">01</b></span><i class="dt"></i></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">02</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">03</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">04</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">05</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">06</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">07</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">08</b></span><i class="sl r"></i></span></div>
       <div class="ribbon-wrap"><div class="ribbon"><span class="r1">あなたのコーデは</span><span class="fold"></span><span class="r2">何のスイーツ</span></div></div>
       <div class="qtitle">手のひらの特徴：</div>
       <div class="rule"></div>
@@ -229,7 +232,7 @@
       <span class="share"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v8h14v-8"/></svg></span>
     </div>
     <div class="card">
-      <div class="steps"><span class="step"><i class="sl">/</i><b class="nm">01</b></span><span class="step"><i class="sl">/</i><b class="nm">02</b><i class="dt"></i></span><span class="step"><i class="sl">/</i><b class="nm">03</b></span><span class="step"><i class="sl">/</i><b class="nm">04</b></span><span class="step"><i class="sl">/</i><b class="nm">05</b></span><span class="step"><i class="sl">/</i><b class="nm">06</b></span><span class="step"><i class="sl">/</i><b class="nm">07</b></span><span class="step"><i class="sl">/</i><b class="nm">08</b><i class="sl">\</i></span></div>
+      <div class="steps"><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">01</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">02</b></span><i class="dt"></i></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">03</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">04</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">05</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">06</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">07</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">08</b></span><i class="sl r"></i></span></div>
       <div class="ribbon-wrap"><div class="ribbon"><span class="r1">あなたのコーデは</span><span class="fold"></span><span class="r2">何のスイーツ</span></div></div>
       <div class="qtitle">鎖骨と肩周りのライン：</div>
       <div class="rule"></div>
@@ -264,7 +267,7 @@
       <span class="share"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v8h14v-8"/></svg></span>
     </div>
     <div class="card">
-      <div class="steps"><span class="step"><i class="sl">/</i><b class="nm">01</b></span><span class="step"><i class="sl">/</i><b class="nm">02</b></span><span class="step"><i class="sl">/</i><b class="nm">03</b><i class="dt"></i></span><span class="step"><i class="sl">/</i><b class="nm">04</b></span><span class="step"><i class="sl">/</i><b class="nm">05</b></span><span class="step"><i class="sl">/</i><b class="nm">06</b></span><span class="step"><i class="sl">/</i><b class="nm">07</b></span><span class="step"><i class="sl">/</i><b class="nm">08</b><i class="sl">\</i></span></div>
+      <div class="steps"><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">01</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">02</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">03</b></span><i class="dt"></i></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">04</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">05</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">06</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">07</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">08</b></span><i class="sl r"></i></span></div>
       <div class="ribbon-wrap"><div class="ribbon"><span class="r1">あなたのコーデは</span><span class="fold"></span><span class="r2">何のスイーツ</span></div></div>
       <div class="qtitle long">ボディーラインと体のバランス：</div>
       <div class="rule"></div>
@@ -299,7 +302,7 @@
       <span class="share"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v8h14v-8"/></svg></span>
     </div>
     <div class="card">
-      <div class="steps"><span class="step"><i class="sl">/</i><b class="nm">01</b></span><span class="step"><i class="sl">/</i><b class="nm">02</b></span><span class="step"><i class="sl">/</i><b class="nm">03</b></span><span class="step"><i class="sl">/</i><b class="nm">04</b><i class="dt"></i></span><span class="step"><i class="sl">/</i><b class="nm">05</b></span><span class="step"><i class="sl">/</i><b class="nm">06</b></span><span class="step"><i class="sl">/</i><b class="nm">07</b></span><span class="step"><i class="sl">/</i><b class="nm">08</b><i class="sl">\</i></span></div>
+      <div class="steps"><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">01</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">02</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">03</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">04</b></span><i class="dt"></i></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">05</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">06</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">07</b></span></span><span class="step"><i class="sl"></i><span class="tcell"><i class="ol"></i><b class="nm">08</b></span><i class="sl r"></i></span></div>
       <div class="ribbon-wrap"><div class="ribbon"><span class="r1">あなたのコーデは</span><span class="fold"></span><span class="r2">何のスイーツ</span></div></div>
       <div class="qtitle">初印象（スタイル）：</div>
       <div class="rule"></div>
